@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ company.name }} — {{ company.tagline }}{% endblock %}</title>
+<meta name="description" content="{% block description %}SalesmateAI is an AI sales agent that lives on your website. It answers, qualifies, books and routes inbound leads — then hands a real person anything it cannot close.{% endblock %}">
+<meta name="theme-color" content="#CCE5F8">
+
+<link rel="canonical" href="{{ site_url }}{{ request.url.path }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:image" content="{{ site_url }}/static/images/modern-office.jpg">
+<meta property="og:url" content="{{ site_url }}{{ request.url.path }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="/static/images/mark.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css?v={{ v }}">
+<link rel="stylesheet" href="/static/css/components.css?v={{ v }}">
+<link rel="stylesheet" href="/static/css/chat.css?v={{ v }}">
+
+<!-- Before first paint, not on DOMContentLoaded: components.css only hides
+     the animated pieces once this class exists, so a reader with scripting
+     off never sees a half-built page, and a reader with it on never sees the
+     finished frame flash before the animation starts. -->
+<script>document.documentElement.className += ' js';</script>
+{% block head %}{% endblock %}
+</head>
+<body class="page-{{ active|default('other') }}">
+
+<div class="bg-canvas" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead" id="masthead">
+  <div class="shell masthead__inner">
+    <div class="masthead__pill">
+      <a class="wordmark" href="/" aria-label="{{ company.name }} home">
+        <img class="wordmark__mark" src="/static/images/mark.svg" alt="" width="25" height="25">
+        <span class="wordmark__primary">Salesmate</span><span class="wordmark__secondary">AI</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="/#product"{% if active == 'home' %} data-scroll{% endif %}>Product</a>
+        <a href="/#market"{% if active == 'home' %} data-scroll{% endif %}>Market</a>
+        <a href="/#privacy-first"{% if active == 'home' %} data-scroll{% endif %}>Privacy</a>
+        <a href="/pricing"{% if active == 'pricing' %} aria-current="page"{% endif %}>Pricing</a>
+        <a href="/company"{% if active == 'company' %} aria-current="page"{% endif %}>Company</a>
+      </nav>
+
+      <div class="masthead__actions">
+        <a class="btn btn--sm" href="/demo">Talk to the agent</a>
+        <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="shell">
+
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h2 class="mono footer__head">Product</h2>
+        <a href="/#product">What it does</a>
+        <a href="/#knowledge">Knowledge layer</a>
+        <a href="/#intent">Intent engine</a>
+        <a href="/#handoff">Human handoff</a>
+        <a href="/demo">Talk to the agent</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="mono footer__head">Who it's for</h2>
+        <a href="/#product">SaaS &amp; software</a>
+        <a href="/#product">IT &amp; cybersecurity</a>
+        <a href="/#product">Agencies</a>
+        <a href="/#product">Consulting &amp; advisory</a>
+        <a href="/#product">Accounting firms</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="mono footer__head">Resources</h2>
+        <a href="/#market">Market data</a>
+        <a href="/#privacy-first">Data &amp; security</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/pricing">Pricing</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="mono footer__head">Company</h2>
+        <a href="/company">About Tora Labs</a>
+        <a href="/company#founder">Founder</a>
+        <a href="/company#roadmap">Roadmap</a>
+        <a href="{{ company.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer__col">
+        <h2 class="mono footer__head">Contact</h2>
+        <a href="mailto:{{ company.email }}">{{ company.email }}</a>
+        <a href="/demo">Book a pilot call</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </div>
+    </div>
+
+    <p class="footer__disclaimer">
+      SalesmateAI is in pre-launch testing. {{ company.legal_name }} has no paying customers and no
+      revenue as of this writing, and nothing on this site should be read as a claim otherwise.
+      Prices shown are the company's published planning assumptions, to be validated with pilot
+      customers — not quoted prices. Market figures are attributed to the analyst firms that
+      published them; estimates for this category vary substantially by methodology, which is why a
+      range is shown rather than a single number. The assistant on this site is an AI agent, not a
+      person, and it will say so.
+    </p>
+
+    <div class="footer__base">
+      <span class="footer__brand">
+        <img src="/static/images/mark.svg" alt="" width="18" height="18" style="border-radius:5px">
+        &copy; {{ year }} {{ company.legal_name }} &middot; {{ company.city }}
+      </span>
+      <span>Entity {{ company.entity_number }} &middot; {{ company.entity_type }}</span>
+    </div>
+  </div>
+</footer>
+
+{% if active != 'demo' %}
+<!-- Floating agent. The panel carries the same element ids the /demo page uses,
+     so chat.js drives both without a second client. -->
+<button class="chatfab" id="chatfab" type="button" aria-expanded="false" aria-controls="chatpanel"
+        aria-label="Open the SalesmateAI agent">
+  <span class="chatfab__ping" aria-hidden="true"></span>
+  <svg class="chatfab__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="5" y="7" width="22" height="17" rx="5"/>
+    <path d="M11 13.5h10M11 18h6"/>
+    <path d="M12 24l-3 4v-4"/>
+  </svg>
+  <svg class="chatfab__close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+       stroke-linecap="round" aria-hidden="true">
+    <path d="M6 6l12 12M18 6L6 18"/>
+  </svg>
+</button>
+
+<div class="chatpanel" id="chatpanel" role="dialog" aria-modal="false" aria-label="SalesmateAI agent" hidden>
+
+  <div class="chatpanel__head">
+    <span class="chatpanel__avatar" aria-hidden="true">
+      <img src="/static/images/mark.svg" alt="" width="30" height="30">
+    </span>
+    <div class="chatpanel__id">
+      <b>SalesmateAI</b>
+      <span><i></i> AI agent &middot; replies instantly</span>
+    </div>
+    <button class="chatpanel__x" id="chatclose" type="button" aria-label="Close the agent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="chatpanel__body">
+    <div class="thread" id="thread" role="log" aria-live="polite" aria-label="Conversation">
+      <div class="msg msg--ai msg--intro">
+        <span class="msg__who" aria-hidden="true">S</span>
+        <div class="msg__body">
+          <p>
+            Hi — I'm SalesmateAI, the agent Tora Labs sells. This is me doing the job on our own
+            site, so you can judge it by how this goes rather than by a deck.
+          </p>
+          <p>What brings you here?</p>
+        </div>
+      </div>
+
+      <!-- Inside the thread, not below it: one scrolling column means the
+           starter cards can never squeeze the conversation into a sliver. -->
+      <div class="chips chips--panel" id="chips">
+        <button class="chip" data-q="We're a 9-person software agency. Most of our enquiries come through the website contact form and I answer them myself, usually late. What would SalesmateAI actually change?">
+          <b>Would this work for us?</b>
+          <span>Tell it about your business and see.</span>
+        </button>
+        <button class="chip" data-q="What does SalesmateAI cost, and what am I paying for on top of the monthly fee?">
+          <b>What does it cost?</b>
+          <span>Subscription plus usage, explained.</span>
+        </button>
+        <button class="chip" data-q="How do you stop it from making things up about our services? We're a consulting firm and a wrong answer to a client is a real problem.">
+          <b>How do you stop it inventing things?</b>
+          <span>The knowledge layer and its limits.</span>
+        </button>
+        <button class="chip" data-q="How long does it take to get this live on our site, and what do we have to do?">
+          <b>How fast can we go live?</b>
+          <span>What setup actually involves.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="composer">
+    <form class="composer__form" id="composer">
+      <label class="visually-hidden" for="input">Your message</label>
+      <textarea id="input" rows="1" placeholder="Ask about your own site…" required></textarea>
+
+      <div class="composer__actions">
+        <button type="button" class="icon-btn" id="mic" aria-label="Record a message">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="9" y="3" width="6" height="11" rx="3"/>
+            <path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>
+          </svg>
+        </button>
+        <button type="submit" class="btn btn--sm" id="send">Send</button>
+      </div>
+    </form>
+
+    <div class="composer__status">
+      <span class="mono" id="status-text"></span>
+      <button class="chatpanel__reset" id="reset" type="button">Clear</button>
+    </div>
+
+    <div class="langs langs--panel" id="langs" role="group" aria-label="Answer language">
+      <button class="lang is-active" data-lang="en">English</button>
+      <button class="lang" data-lang="es">Espa&ntilde;ol</button>
+      <button class="lang" data-lang="uz">O&#699;zbek</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<script src="/static/js/site.js?v={{ v }}" defer></script>
+<script src="/static/js/components.js?v={{ v }}" defer></script>
+{% if active != 'demo' %}<script src="/static/js/chat.js?v={{ v }}" defer></script>{% endif %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

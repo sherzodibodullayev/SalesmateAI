@@ -1,0 +1,749 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ======================================================================
+     HERO  —  animated-hero (rotating noun) + liquid-glass / flip buttons
+     ==================================================================== -->
+<section class="hero">
+  <div class="hero__sky" aria-hidden="true"></div>
+  <span class="hero__cloud hero__cloud--1" aria-hidden="true"></span>
+  <span class="hero__cloud hero__cloud--2" aria-hidden="true"></span>
+  <span class="hero__cloud hero__cloud--3" aria-hidden="true"></span>
+
+  <div class="shell">
+    <span class="hero__badge"><b>Pre-launch</b> Pilot slots open<span class="hero__badge-tail"> &mdash; run by the founder himself</span></span>
+
+    <h1 class="rt">The most intelligent <span class="rotw"
+        data-words="sales rep|night shift|first reply|SDR"><span class="rotw__w">sales rep</span></span>, <br>but it&rsquo;s on your website.</h1>
+
+    <p class="hero__sub">
+      SalesmateAI answers the moment a visitor lands, asks what your rep would ask, and hands your
+      team a lead worth calling &mdash; or hands the visitor a person. At 3am. On a Saturday.
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn btn--lg btn--glass" href="/demo">
+        Talk to the agent
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+      <a class="btn btn--lg btn--light flipbtn" href="/pricing">
+        <span class="flipbtn__t"><span>See pricing</span><span>From $199/mo</span></span>
+      </a>
+    </div>
+
+    <p class="hero__note">It is the real product, running on our own site. Judge it by the conversation.</p>
+
+    <!-- The product, drawn rather than photographed, and played rather than
+         posed: on scroll-in the conversation types itself out and the lead
+         record fills in beside it, about three and a half seconds, then it
+         holds. The markup below IS the end state, so with no JS — or under
+         reduced motion — this is simply a finished screenshot. -->
+    <div class="hero__shot reveal">
+      <div class="frame" data-seq>
+        <div class="frame__bar">
+          <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="frame__url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+            </svg>
+            app.salesmateai.com/inbox
+          </span>
+          <span class="frame__dots" aria-hidden="true"><i style="background:transparent"></i></span>
+        </div>
+
+        <div class="frame__body">
+
+          <aside class="rail" aria-hidden="true">
+            <div class="rail__head">
+              <span class="mono">Live</span>
+              <span class="mono">4</span>
+            </div>
+            <div class="rail__item is-on">
+              Visitor &middot; Chicago, IL
+              <span>Pricing &middot; 40 seconds ago</span>
+            </div>
+            <div class="rail__item">
+              Visitor &middot; Austin, TX
+              <span>Integrations &middot; 3 min</span>
+            </div>
+            <div class="rail__item">
+              Maya R. &middot; Northwind
+              <span>Booked a call &middot; 12 min</span>
+            </div>
+            <div class="rail__item">
+              Visitor &middot; Toronto
+              <span>Handed to Dan &middot; 26 min</span>
+            </div>
+            <div class="rail__foot">
+              <b>Overnight</b>
+              31 conversations &middot; 7 qualified &middot; 0 missed
+            </div>
+          </aside>
+
+          <div class="convo">
+            <div class="convo__who">
+              <b>Visitor</b>
+              <em>Live</em>
+              <span class="convo__badge seq" data-at="3000">Intent: pricing</span>
+            </div>
+
+            <div class="bub bub--ai seq" data-at="150" data-type data-dur="760">
+              Hi &mdash; I&rsquo;m an AI agent, not a person, so you won&rsquo;t be waiting on anyone.
+              What brought you in today?
+            </div>
+            <div class="bub bub--you seq" data-at="1050">
+              Looking at options for our website. We&rsquo;re a 30-person IT services firm.
+            </div>
+            <div class="bub bub--ai seq" data-at="1450" data-type data-dur="920">
+              Got it. For a team that size the usual pain is enquiries landing after hours and
+              going cold by Monday. Roughly how many a month do you get, and who picks them up now?
+            </div>
+            <div class="bub bub--you seq" data-at="2480">
+              Maybe 60. They go to a shared inbox and whoever&rsquo;s free replies.
+            </div>
+            <div class="convo__type seq" data-at="2900" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+
+          <aside class="lead" aria-hidden="true">
+            <div class="lead__head">
+              <span class="mono">Lead record</span>
+              <span class="lead__score seq" data-at="3250">Qualified</span>
+            </div>
+            <div class="lead__row seq" data-at="1250">
+              <span>Company</span><b>IT services &middot; ~30 staff</b>
+            </div>
+            <div class="lead__row seq" data-at="2650">
+              <span>Inbound volume</span><b>~60 / month</b>
+            </div>
+            <div class="lead__row seq" data-at="2820">
+              <span>Handled by</span><b>Shared inbox, no owner</b>
+            </div>
+            <div class="lead__row lead__row--pending is-writing seq" data-at="3050">
+              <span>Timeline</span><b>Asking</b>
+            </div>
+            <div class="lead__act">
+              <div class="seq" data-at="3350">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Routed to Dan &middot; Mid-market
+              </div>
+              <div class="seq" data-at="3520">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Written to CRM
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     STATEMENT  —  reveal-text
+     ==================================================================== -->
+<section class="sec sec--tight">
+  <div class="shell">
+    <div style="text-align:center" class="reveal">
+      <a class="eyebrow" href="/demo">
+        Introducing SalesmateAI
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17L17 7M9 7h8v8"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="statement">
+      <p class="rt">
+        Most website chat was built to deflect support tickets. Companies point it at sales anyway,
+        so it answers three FAQs, asks for an email, and calls that a lead.
+        <b>Meanwhile the buyer on the other side has already changed how they shop</b> &mdash; a majority
+        of B2B software buyers now start vendor research inside an AI chat window rather than a
+        search engine.
+      </p>
+      <p class="rt">
+        <b>SalesmateAI is built for one job: the first sales conversation.</b> It works out what a
+        visitor actually needs, asks the questions your rep would ask, writes the lead record while
+        they speak, and routes it to the person who should call. When it hits the edge of what it
+        knows, it stops and gets a human &mdash; which is the part most of this category still gets wrong.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     BAND  —  a wide image with the numbers it belongs to
+     ==================================================================== -->
+<section class="sec sec--tight">
+  <div class="shell">
+    <figure class="band reveal">
+      <img src="/static/images/workspace-window.jpg"
+           alt="An empty desk by a window in a quiet office, laptop open" loading="lazy"
+           width="1100" height="640">
+      <figcaption class="band__over">
+        <p class="band__quote">
+          The enquiry that arrives at 9:40pm on a Friday is worth exactly as much as the one that
+          arrives at 10am on a Tuesday. It just never gets treated that way.
+        </p>
+        <div class="band__stats">
+          <div><b>0</b><span>enquiries missed overnight</span></div>
+          <div><b>&lt;5s</b><span>to a first, useful reply</span></div>
+          <div><b>4</b><span>questions answered before a rep opens it</span></div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     PRODUCT  —  spotlight cards
+     ==================================================================== -->
+<section class="sec" id="product">
+  <div class="shell">
+    <div class="sec__head sec__head--mid reveal">
+      <span class="eyebrow eyebrow--muted">An AI sales employee layer</span>
+      <h2 class="rt">Anything your best rep does in the first ten minutes, SalesmateAI does at 3am.</h2>
+      <p class="lede">
+        Not a broader platform configured down into a sales bot. A narrow product that engages,
+        understands intent, answers from approved material, qualifies, collects, recommends,
+        schedules, routes and records &mdash; and does nothing else.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card spot reveal">
+        <div class="card__art card__art--wash-1">
+          <div class="mini">
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></i>
+              <span>&ldquo;Do you work with firms our size?&rdquo;</span>
+              <em class="mini__tag">Exploratory</em>
+            </div>
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></i>
+              <span>&ldquo;What would this cost us?&rdquo;</span>
+              <em class="mini__tag mini__tag--amber">Pricing</em>
+            </div>
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></i>
+              <span>&ldquo;Can we start in two weeks?&rdquo;</span>
+              <em class="mini__tag mini__tag--green">Qualified</em>
+            </div>
+          </div>
+        </div>
+        <h3>It reads intent, not keywords.</h3>
+        <p>
+          Every message is classified &mdash; informational, exploratory, sales-qualified, pricing,
+          demo, support, or needs-a-human &mdash; and the conversation takes the path that matches.
+        </p>
+      </article>
+
+      <article class="card spot reveal">
+        <div class="card__art">
+          <img src="/static/images/small-team.jpg"
+               alt="Three colleagues working together at a table with laptops"
+               loading="lazy" width="1100" height="825">
+        </div>
+        <h3>It asks the four questions you would.</h3>
+        <p>
+          What the business does, how much inbound it gets, who handles it now, what timeline they
+          are on. One at a time, inside real answers &mdash; never a form dropped on a stranger.
+        </p>
+      </article>
+
+      <article class="card spot reveal">
+        <div class="card__art card__art--wash-2">
+          <div class="mini">
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></i>
+              <span>Call booked &middot; Thu 10:30</span>
+              <b>auto</b>
+            </div>
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 8h16"/></svg></i>
+              <span>CRM record written</span>
+              <b>auto</b>
+            </div>
+            <div class="mini__row">
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg></i>
+              <span>Dan notified &middot; mid-market</span>
+              <b>auto</b>
+            </div>
+          </div>
+        </div>
+        <h3>It finishes the job, then gets out of the way.</h3>
+        <p>
+          Books the meeting, writes the CRM record, notifies the right rep, logs the whole exchange
+          for analytics. The rep opens a lead that already has context attached.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     MARKET  —  the analyst chart
+     ==================================================================== -->
+<section class="sec sec--soft" id="market">
+  <div class="shell">
+    <div class="sec__head sec__head--mid reveal">
+      <span class="eyebrow eyebrow--muted">Why now</span>
+      <h2 class="rt">A category compounding faster than anyone can staff against.</h2>
+      <p class="lede">
+        Analysts disagree on the size of the conversational AI market by several billion dollars,
+        because they define it differently. They do not disagree on direction. Here are five 2026
+        estimates, side by side, rather than the single flattering one.
+      </p>
+    </div>
+
+    <div class="bench reveal" id="bench">
+      <div class="bench__rows">
+
+        <div class="bench__row" data-v-cagr="23.8" data-l-cagr="23.8%"
+             data-v-base="14.3" data-l-base="$14.3B" data-v-fc="78.9" data-l-fc="$78.9B">
+          <div class="bench__name"><i>GV</i> Grand View Research</div>
+          <div class="bench__track"><div class="bench__fill"></div></div>
+          <div class="bench__val">&mdash;</div>
+        </div>
+
+        <div class="bench__row" data-v-cagr="23.2" data-l-cagr="23.2%"
+             data-v-base="19.2" data-l-base="$19.2B" data-v-fc="155.2" data-l-fc="$155.2B">
+          <div class="bench__name"><i>PR</i> Precedence Research</div>
+          <div class="bench__track"><div class="bench__fill"></div></div>
+          <div class="bench__val">&mdash;</div>
+        </div>
+
+        <div class="bench__row" data-v-cagr="28.0" data-l-cagr="28.0%"
+             data-v-base="17.6" data-l-base="$17.6B" data-v-fc="172.5" data-l-fc="$172.5B">
+          <div class="bench__name"><i>IM</i> IMARC Group</div>
+          <div class="bench__track"><div class="bench__fill"></div></div>
+          <div class="bench__val">&mdash;</div>
+        </div>
+
+        <div class="bench__row" data-v-cagr="44.5" data-l-cagr="44.5%"
+             data-v-base="23.2" data-l-base="$23.2B" data-v-fc="221.5" data-l-fc="$221.5B">
+          <div class="bench__name"><i>RM</i> Research and Markets</div>
+          <div class="bench__track"><div class="bench__fill"></div></div>
+          <div class="bench__val">&mdash;</div>
+        </div>
+
+        <div class="bench__row" data-v-cagr="23.0" data-l-cagr="23.0%"
+             data-v-base="16.1" data-l-base="$16.1B" data-v-fc="68.5" data-l-fc="$68.5B">
+          <div class="bench__name"><i>CM</i> Coherent Market Insights</div>
+          <div class="bench__track"><div class="bench__fill"></div></div>
+          <div class="bench__val">&mdash;</div>
+        </div>
+
+      </div>
+
+      <div class="bench__tabs" role="group" aria-label="Which figure to show">
+        <button class="bench__tab is-on" data-metric="cagr">Annual growth</button>
+        <button class="bench__tab" data-metric="base">Market today</button>
+        <button class="bench__tab" data-metric="fc">Forecast</button>
+      </div>
+
+      <p class="bench__note">
+        Base years are 2025 or 2026 and forecast horizons run 2032&ndash;2035, depending on the firm &mdash;
+        the bars compare magnitude, not identical periods. North America is consistently put at
+        28&ndash;31% of the global market. The gap that matters more to us is smaller and better
+        measured: the U.S. Census Bureau puts small-business AI adoption near 20% under a strict
+        definition, while broad self-report surveys reach the 70s. Most of that reported adoption is
+        someone pasting text into a general chatbot &mdash; not a system doing a job.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     KNOWLEDGE LAYER
+     ==================================================================== -->
+<section class="sec" id="knowledge">
+  <div class="shell">
+    <div class="split reveal">
+      <div>
+        <a class="eyebrow" href="/demo">
+          Knowledge layer
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+        <h2 class="rt"><span class="fade">Knowledge</span> that only says what you approved.</h2>
+        <p class="lede" style="margin-top:20px">
+          The agent answers from sources you load and can see &mdash; your services, your scope, your
+          qualifying criteria. Scoped to your account and never mixed with another customer's.
+        </p>
+        <ul class="split__list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><b>It says &ldquo;I don't know&rdquo; out loud.</b> Off-script questions become a handoff, not a guess.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><b>Every source is switchable.</b> Turn a page off and the agent stops quoting it on the next message.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><b>One account, one knowledge base.</b> Nothing you upload is shared across customers.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><b>Model-independent by design.</b> The orchestration layer sits between your business and whichever model runs underneath, so the provider can change without the product changing.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel spot" aria-hidden="true">
+        <div class="srcs">
+          <div class="mono srcs__head">Sources</div>
+          <div class="src"><i></i> Services &amp; scope <span>18p</span></div>
+          <div class="src"><i></i> Pricing policy <span>2p</span></div>
+          <div class="src"><i></i> Qualifying criteria <span>1p</span></div>
+          <div class="src"><i></i> Case summaries <span>7p</span></div>
+          <div class="src"><i class="is-off"></i> Internal margins <span>off</span></div>
+          <div class="src"><i class="is-off"></i> Draft 2027 deck <span>off</span></div>
+        </div>
+
+        <div class="answer">
+          <p>
+            <b>Yes &mdash; we take on SOC 2 readiness work for firms under 200 staff.</b>
+            Typical engagement runs eight to twelve weeks depending on how much policy work already
+            exists. <span class="cite">Services &amp; scope &middot; p4</span>
+          </p>
+          <p>
+            I don't have a figure for your sector's audit fees &mdash; that isn't in anything I've been
+            given, and I'd rather not guess at a number you'd plan around.
+          </p>
+          <div class="answer__foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Answered from 2 approved sources &middot; 1 gap flagged
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     INTENT ENGINE  —  typewriter + spotlight cards
+     ==================================================================== -->
+<section class="sec sec--soft" id="intent">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <a class="eyebrow" href="/demo">
+        Sales intent engine
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17L17 7M9 7h8v8"/>
+        </svg>
+      </a>
+      <h2 class="rt">Intent that routes itself.</h2>
+      <p class="lede">
+        The same visitor question means different things at different moments. The engine decides
+        which of seven paths a message belongs on, and the workflow engine acts on it. It sounds
+        like this:
+        <span class="tw" data-phrases="&ldquo;What do you charge?&rdquo; &rarr; pricing|&ldquo;Is this GDPR-safe?&rdquo; &rarr; needs a human|&ldquo;Can we start in May?&rdquo; &rarr; sales-qualified|&ldquo;Where are you based?&rdquo; &rarr; informational">&ldquo;What do you charge?&rdquo; &rarr; pricing</span>
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card spot reveal">
+        <div class="card__art card__art--wash-3">
+          <div class="mini">
+            <div class="mini__row"><span>Informational</span><em class="mini__tag">answer</em></div>
+            <div class="mini__row"><span>Exploratory</span><em class="mini__tag">qualify</em></div>
+            <div class="mini__row"><span>Sales-qualified</span><em class="mini__tag mini__tag--green">route</em></div>
+            <div class="mini__row"><span>Needs a human</span><em class="mini__tag mini__tag--amber">escalate</em></div>
+          </div>
+        </div>
+        <h3>Seven paths, one conversation.</h3>
+        <p>
+          Informational, exploratory, sales-qualified, pricing, demo, support, needs-a-human. The
+          visitor never sees the machinery &mdash; they just get an answer that fits what they asked.
+        </p>
+      </article>
+
+      <article class="card spot reveal">
+        <div class="card__art">
+          <img src="/static/images/sales-floor.jpg"
+               alt="A sales team at a shared table, several on headsets"
+               loading="lazy" width="1100" height="733">
+        </div>
+        <h3>Your reps get context, not a ping.</h3>
+        <p>
+          A routed lead arrives with the business, the volume, the current process and the timeline
+          already captured &mdash; so the first human call starts where the chat ended.
+        </p>
+      </article>
+
+      <article class="card spot reveal">
+        <div class="card__art card__art--wash-2">
+          <div class="mini">
+            <div class="mini__row"><span>Conversations</span><b>312</b></div>
+            <div class="mini__row"><span>Qualified leads</span><b>47</b></div>
+            <div class="mini__row"><span>Escalation rate</span><b>9%</b></div>
+            <div class="mini__row"><span>Median response</span><b>4s</b></div>
+          </div>
+        </div>
+        <h3>Numbers you can actually argue with.</h3>
+        <p>
+          Conversations, qualified leads, conversion events, escalation rate, response time, usage.
+          Pilots that fail usually fail because nobody could measure them. These are the measures.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     HUMAN HANDOFF  —  dark panel with a photograph
+     ==================================================================== -->
+<section class="sec sec--tight" id="handoff">
+  <div class="shell">
+    <div class="dark dark--media reveal">
+      <div class="dark__shot" aria-hidden="true">
+        <img src="/static/images/advisory-desk.jpg"
+             alt="" loading="lazy" width="1100" height="733">
+      </div>
+
+      <div class="dark__copy">
+        <span class="eyebrow">Human handoff</span>
+        <h2 class="rt">The best thing it does is stop.</h2>
+        <p>
+          A visitor who asks for a person, gets frustrated, or asks something outside the knowledge
+          base gets a human &mdash; immediately, or a logged follow-up if it is the middle of the night.
+          It is a default, not a setting you have to find.
+        </p>
+        <a class="btn btn--glass" href="/demo">Try to break it</a>
+      </div>
+
+      <div class="handoff" aria-hidden="true">
+        <div class="bub bub--you">Honestly I&rsquo;d rather just talk to someone.</div>
+        <div class="bub bub--ai">
+          Completely fair. I&rsquo;m getting Nodirbek &mdash; he&rsquo;s the founder and he runs every
+          pilot himself. What&rsquo;s the best email for you?
+        </div>
+        <div class="bub bub--you">maya@northwind.io</div>
+        <div class="bub bub--ai">
+          Done. He has your email, the fact that you run a 30-person IT services firm, and that
+          you&rsquo;re looking at after-hours coverage. You&rsquo;ll hear from him directly.
+        </div>
+        <div class="handoff__note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Escalated in one turn &middot; context attached &middot; no repetition asked of the visitor
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     PRIVACY  —  four pillars
+     ==================================================================== -->
+<section class="sec" id="privacy-first">
+  <div class="shell">
+    <div class="sec__head sec__head--mid reveal">
+      <span class="eyebrow eyebrow--muted">Data &amp; control</span>
+      <h2 class="rt">Private enough to point at client work.</h2>
+      <p class="lede">
+        The agent handles your business information and personal details volunteered by strangers.
+        That makes data handling part of the product, not a page in the contract.
+      </p>
+    </div>
+
+    <div class="pillars">
+
+      <div class="pillar spot reveal">
+        <div class="pillar__art">
+          <svg viewBox="0 0 160 132" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <rect x="26" y="26" width="108" height="80" rx="10" stroke="rgba(11,18,32,.2)"/>
+            <rect x="42" y="44" width="52" height="8" rx="4" fill="rgba(37,99,235,.28)" stroke="none"/>
+            <rect x="42" y="62" width="76" height="8" rx="4" fill="rgba(11,18,32,.1)" stroke="none"/>
+            <rect x="42" y="80" width="34" height="8" rx="4" fill="rgba(11,18,32,.1)" stroke="none"/>
+            <path d="M104 78l22 22M126 78l-22 22" stroke="rgba(11,18,32,.36)" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Only what qualifies a lead.</h3>
+        <p>
+          Name, contact details and the substance of the enquiry. Not a broad, undefined sweep of
+          whatever a visitor happens to type.
+        </p>
+      </div>
+
+      <div class="pillar spot reveal">
+        <div class="pillar__art">
+          <svg viewBox="0 0 160 132" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <rect x="52" y="58" width="56" height="44" rx="8" stroke="rgba(11,18,32,.22)" fill="rgba(11,18,32,.04)"/>
+            <path d="M66 58V46a14 14 0 0 1 28 0v12" stroke="rgba(11,18,32,.36)"/>
+            <circle cx="80" cy="78" r="6" fill="rgba(37,99,235,.45)" stroke="none"/>
+            <path d="M80 84v6" stroke="rgba(37,99,235,.6)" stroke-linecap="round"/>
+            <path d="M30 80h14M116 80h14" stroke="rgba(11,18,32,.18)" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Encrypted in transit and at rest.</h3>
+        <p>
+          Access is limited to your own authorised users and the few Tora Labs staff needed to run
+          and support the platform.
+        </p>
+      </div>
+
+      <div class="pillar spot reveal">
+        <div class="pillar__art">
+          <svg viewBox="0 0 160 132" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <circle cx="80" cy="66" r="34" stroke="rgba(11,18,32,.2)"/>
+            <path d="M80 44v22l15 9" stroke="rgba(37,99,235,.62)" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M118 38l10-6M42 38l-10-6" stroke="rgba(11,18,32,.18)" stroke-linecap="round"/>
+            <rect x="60" y="104" width="40" height="7" rx="3.5" fill="rgba(11,18,32,.1)" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Retention with an end date.</h3>
+        <p>
+          Conversations and leads are kept for as long as your analytics need them, on a defined
+          period written into the terms &mdash; and deleted on request.
+        </p>
+      </div>
+
+      <div class="pillar spot reveal">
+        <div class="pillar__art">
+          <svg viewBox="0 0 160 132" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <rect x="34" y="50" width="34" height="32" rx="7" stroke="rgba(11,18,32,.22)"/>
+            <rect x="92" y="50" width="34" height="32" rx="7" stroke="rgba(11,18,32,.22)"/>
+            <path d="M68 66h24" stroke="rgba(37,99,235,.55)" stroke-dasharray="3 4"/>
+            <circle cx="51" cy="66" r="5" fill="rgba(11,18,32,.14)" stroke="none"/>
+            <circle cx="109" cy="66" r="5" fill="rgba(37,99,235,.35)" stroke="none"/>
+            <rect x="52" y="96" width="56" height="7" rx="3.5" fill="rgba(11,18,32,.09)" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Sub-processors on the record.</h3>
+        <p>
+          The AI providers and hosting we rely on are listed and reviewed, so swapping a model
+          provider never quietly changes where your data goes.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     FAQ  —  faq1
+     ==================================================================== -->
+<section class="sec sec--soft" id="faq">
+  <div class="shell">
+    <div class="sec__head sec__head--mid reveal">
+      <span class="eyebrow eyebrow--muted">Straight answers</span>
+      <h2 class="rt">The questions people actually open with.</h2>
+      <p class="lede">
+        Short versions here. The agent will take any of them further, and will tell you when it
+        does not know.
+      </p>
+    </div>
+
+    <div class="faq reveal">
+      <details open>
+        <summary>Do you have customers yet?</summary>
+        <div class="faq__a"><div><p>
+          No. SalesmateAI is in pre-launch testing and Tora Labs has no paying customers and no
+          revenue. The founder is validating conversational accuracy, the website embed and the
+          qualification logic before taking money for it. What is open right now is a pilot, run by
+          the founder personally &mdash; which is a better deal than being customer four hundred.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>How is this different from the chat widget we already have?</summary>
+        <div class="faq__a"><div><p>
+          Most website chat descends from customer support and was built to deflect tickets.
+          SalesmateAI is built around one job &mdash; qualifying and routing a sales conversation &mdash;
+          so it asks qualifying questions on its own initiative, writes a structured lead record,
+          and measures itself on qualified leads rather than deflection rate.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>What stops it from inventing things about our services?</summary>
+        <div class="faq__a"><div><p>
+          It answers from a knowledge base you load and control, scoped to your account alone. When
+          a question falls outside it, the designed behaviour is to say so and escalate rather than
+          improvise. That is the single most important design constraint in the product, because a
+          confident wrong answer to a prospect costs more than no answer.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>How long does deployment take?</summary>
+        <div class="faq__a"><div><p>
+          Days. The customer installs a lightweight website component and loads the knowledge
+          sources; the qualification questions and routing rules are configuration, not a build.
+          Enterprise conversational AI platforms typically run weeks-to-months implementation
+          projects &mdash; that gap is the whole positioning.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>Is voice available?</summary>
+        <div class="faq__a"><div><p>
+          Not yet. Voice AI is in development and the platform architecture is being built for it,
+          but it is not shipped and the site will not claim it is. Website chat comes first because
+          it is the controlled environment in which to prove the product works.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>Will it integrate with our CRM?</summary>
+        <div class="faq__a"><div><p>
+          CRM and business-system integrations are being built out through the first 24 months.
+          Ask the agent about a specific one and it will tell you honestly whether it is live,
+          planned, or something the founder needs to confirm &mdash; rather than nodding along.
+        </p></div></div>
+      </details>
+      <details>
+        <summary>Who is behind this?</summary>
+        <div class="faq__a"><div><p>
+          Tora Labs LLC, a Pennsylvania company (entity {{ company.entity_number }}, filed
+          {{ company.filing_date }}), founded and wholly owned by {{ founder.name }}, who
+          capitalised it with $50,000 of his own money and built the MVP himself. There are no
+          outside investors. <a href="/company">More on the company</a>.
+        </p></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     CLOSE  —  glsl-hills
+     ==================================================================== -->
+<section class="sec sec--tight">
+  <div class="shell">
+    <div class="hills-wrap reveal">
+      <canvas class="hills" aria-hidden="true"></canvas>
+
+      <div class="close">
+        <h2 class="rt">Built for your buyers and your reps. Start with a pilot.</h2>
+        <p>
+          Bring a real question about your own business to the agent and see how it handles it. If it
+          goes well, the next conversation is with Nodirbek.
+        </p>
+        <a class="btn btn--lg btn--glass" href="/demo">
+          Talk to the agent
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <p class="close__note">No card, no form, no sales sequence. It is a conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

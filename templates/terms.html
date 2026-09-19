@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Use — {{ company.name }}{% endblock %}
+{% block description %}The terms covering this website and the SalesmateAI agent running on it, from Tora Labs LLC.{% endblock %}
+
+{% block content %}
+
+<section class="pagehead">
+  <div class="pagehead__sky" aria-hidden="true"></div>
+  <div class="shell">
+    <span class="eyebrow eyebrow--muted">Legal</span>
+    <h1>Terms of Use</h1>
+    <p class="lede">
+      These terms cover this website and the SalesmateAI agent running on it. A separate customer
+      agreement governs any paid deployment of SalesmateAI on your own website.
+    </p>
+  </div>
+</section>
+
+<section class="sec sec--tight" style="padding-top:0">
+  <div class="shell">
+    <div class="prose reveal">
+
+      <div class="notice" style="margin-top:0">
+        <b>Plain summary.</b>
+        The agent on this site is an AI, not a person, and it can be wrong. Nothing it says is an
+        offer, a quote or a contract. Prices shown here are published planning assumptions, not
+        quoted prices. Don't try to break the service for other people. If something matters, get it
+        in writing from a person.
+      </div>
+
+      <h2>1. The agent is an AI</h2>
+      <p>
+        SalesmateAI is an automated system. It discloses this at the start of every conversation and
+        will confirm it whenever asked. It is not a person, it does not have authority to bind
+        {{ company.legal_name }} to anything, and it can produce inaccurate or incomplete answers.
+        Treat anything it tells you as informational until a person confirms it in writing.
+      </p>
+
+      <h2>2. Nothing here is an offer</h2>
+      <p>
+        Prices, plan contents, capabilities, integrations and timelines on this site are the
+        company's current planning assumptions, published for transparency during a pre-launch
+        period. They are not quoted prices and not a binding offer. A commercial relationship begins
+        only with a signed agreement.
+      </p>
+
+      <h2>3. Product status</h2>
+      <p>
+        SalesmateAI is in pre-launch testing. Features described as planned or in development &mdash;
+        including Voice AI and specific CRM integrations &mdash; are not available today, and their
+        timing may change. Nothing on this site should be read as a representation that
+        {{ company.legal_name }} has customers or revenue that it does not have.
+      </p>
+
+      <h2>4. Acceptable use</h2>
+      <ul>
+        <li>Do not attempt to overload, disrupt or gain unauthorised access to the service.</li>
+        <li>Do not use the agent to generate unlawful, harassing or deliberately deceptive content.</li>
+        <li>Do not submit other people's personal or confidential information into the agent.</li>
+        <li>Do not submit credentials, payment details, or government identification numbers. The agent will never ask for them.</li>
+        <li>Do not scrape or systematically extract the site or the agent's outputs.</li>
+      </ul>
+      <p>
+        We apply rate limits to keep the service available, and we may restrict access that breaches
+        these terms.
+      </p>
+
+      <h2>5. Your content</h2>
+      <p>
+        You keep ownership of what you type. You grant us a limited right to process it in order to
+        operate the service, respond to you, and improve accuracy. Handling is described in the
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+
+      <h2>6. Intellectual property</h2>
+      <p>
+        The site, the SalesmateAI software and the SalesmateAI name are the property of
+        {{ company.legal_name }}. Nothing here grants you a licence to them beyond ordinary use of
+        the site.
+      </p>
+
+      <h2>7. No warranty</h2>
+      <p>
+        This website and the agent are provided "as is", without warranties of any kind. We do not
+        warrant that the agent will be accurate, uninterrupted or error-free. It is a demonstration
+        of a product still in testing, offered on that basis.
+      </p>
+
+      <h2>8. Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, {{ company.legal_name }} is not liable for indirect,
+        incidental, special or consequential damages, or for loss of profits, revenue, data or
+        business opportunity, arising from your use of this website or the agent. Nothing in these
+        terms limits liability that cannot lawfully be limited.
+      </p>
+
+      <h2>9. Not professional advice</h2>
+      <p>
+        The agent does not give legal, tax, financial or other professional advice, and neither does
+        this site. Decisions that carry a real cost should be taken with a qualified professional.
+      </p>
+
+      <h2>10. Governing law</h2>
+      <p>
+        These terms are governed by the laws of the Commonwealth of Pennsylvania, United States,
+        without regard to conflict-of-law principles.
+      </p>
+
+      <h2>11. Changes</h2>
+      <p>
+        We may update these terms as the product moves out of testing. Material changes will be
+        reflected on this page.
+      </p>
+
+      <h2>12. Contact</h2>
+      <p>
+        <a href="mailto:{{ company.email }}">{{ company.email }}</a> &middot;
+        {{ company.legal_name }}, {{ company.city }}.
+      </p>
+
+      <p class="mono" style="margin-top:36px;color:var(--muted-2)">
+        Last updated {{ year }} &middot; {{ company.legal_name }}
+      </p>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Company — {{ company.legal_name }}{% endblock %}
+{% block description %}Tora Labs LLC is a Pennsylvania company building SalesmateAI, founded and wholly funded by Nodirbek Anvarov. Pre-launch, no outside investors, no revenue yet — and honest about all three.{% endblock %}
+
+{% block content %}
+
+<section class="pagehead">
+  <div class="pagehead__sky" aria-hidden="true"></div>
+  <div class="shell">
+    <span class="eyebrow eyebrow--muted">Company</span>
+    <h1 class="rt">A small company that would rather be checkable than impressive.</h1>
+    <p class="lede">
+      Tora Labs LLC is a Pennsylvania company building SalesmateAI. One founder, $50,000 of his own
+      money, no outside investors, no revenue yet. Everything on this page can be verified against
+      the public record or is labelled as a plan.
+    </p>
+  </div>
+</section>
+
+<section class="sec sec--tight" style="padding-top:4px">
+  <div class="shell">
+    <div class="facts reveal">
+      <div><span class="mono">Legal name</span><b>{{ company.legal_name }}</b></div>
+      <div><span class="mono">Doing business as</span><b>{{ company.name }}</b></div>
+      <div><span class="mono">Entity type</span><b>{{ company.entity_type }}</b></div>
+      <div><span class="mono">Entity number</span><b>{{ company.entity_number }}</b></div>
+      <div><span class="mono">Filed</span><b>{{ company.filing_date }}</b></div>
+      <div><span class="mono">Registered office</span><b>{{ company.city }}</b></div>
+      <div><span class="mono">Ownership</span><b>{{ founder.name }} &middot; 100%</b></div>
+      <div><span class="mono">Outside capital</span><b>None</b></div>
+    </div>
+
+    <figure class="strip reveal">
+      <img src="/static/images/philadelphia.jpg"
+           alt="Center City Philadelphia at dusk, City Hall tower in the foreground"
+           loading="lazy" width="1920" height="1280">
+      <figcaption>
+        Center City Philadelphia &mdash; the company's registered home and the labour market its
+        hiring plan draws on.
+        <span>Photo by Peetlesnumber1,
+          <a href="https://commons.wikimedia.org/wiki/File:Center_City_Philadelphia_2018.jpg"
+             target="_blank" rel="noopener">Wikimedia Commons</a>,
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+             target="_blank" rel="noopener">CC BY-SA 4.0</a>.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="founder">
+  <div class="shell">
+    <div class="split reveal">
+      <div class="prose" style="margin:0">
+        <span class="eyebrow eyebrow--muted">Founder</span>
+        <h2 class="rt" style="margin-top:0">Nodirbek Anvarov</h2>
+        <p>
+          Nodirbek is the founder, organizer and sole owner of Tora Labs LLC, and the company's
+          principal executive &mdash; product, strategy, customer acquisition, partnerships and
+          operations. He identified the opportunity, built the SalesmateAI MVP himself, formed the
+          Pennsylvania entity, and capitalised the company with $50,000 of his own funds.
+        </p>
+        <p>
+          The business plan this site is built from is deliberately conservative about his
+          background: it records what is documented and declines to assert anything beyond it. That
+          is unusual, and it is the right instinct. The case for him running this company rests on
+          execution that can be checked &mdash; an entity that exists, a product that runs, capital
+          that is committed &mdash; rather than a résumé.
+        </p>
+        <p>
+          He is also, for the first stretch of this, the sales team. Every early pilot is onboarded
+          by him personally, which is both a constraint on how fast the company can grow and the
+          reason early customers get an unusually direct line to the person who can change the
+          product.
+        </p>
+      </div>
+
+      <div>
+        <div class="person">
+          <div class="person__mark" aria-hidden="true">NA</div>
+          <div>
+            <h3>{{ founder.name }}</h3>
+            <p class="person__role">{{ founder.role }} &middot; {{ founder.home }}</p>
+          </div>
+        </div>
+        <ul class="split__list" style="margin-top:26px">
+          {% for item in founder.credentials %}
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>{{ item }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        <p class="lede" style="margin-top:22px;font-size:.86rem">
+          Documented items only. Where the record establishes an offer or an application rather than
+          a completed qualification, it is written that way here.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--soft" id="roadmap">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <span class="eyebrow eyebrow--muted">Roadmap</span>
+      <h2 class="rt">Five stages, in order, with the first one still unfinished.</h2>
+      <p class="lede">
+        The long-term platform is an AI sales workforce &mdash; several specialised agents covering
+        qualification, appointments, follow-up, support and reactivation. None of that is a reason
+        to skip the part that has to work first.
+      </p>
+    </div>
+
+    <figure class="band band--short reveal" style="margin-bottom:34px">
+      <img src="/static/images/open-plan.jpg"
+           alt="An open-plan office floor, mostly empty desks" loading="lazy"
+           width="1100" height="733">
+      <figcaption class="band__over">
+        <p class="band__quote">Stage one is a website widget. Stage five is a floor like this one, and
+          the distance between them is entirely made of customers we do not have yet.</p>
+        <div class="band__stats">
+          <div><b>2&ndash;3</b><span>people in year one</span></div>
+          <div><b>25&ndash;35</b><span>planned by year five</span></div>
+          <div><b>$109.7k</b><span>median Philadelphia tech wage, 2025</span></div>
+        </div>
+      </figcaption>
+    </figure>
+
+    <div class="intents reveal" style="margin-top:40px">
+      <div class="intent spot">
+        <span><b>Stage 1 &mdash; AI website sales agent.</b> The core conversational sales product. <em>In pre-launch testing now.</em></span>
+        <em class="mini__tag mini__tag--amber">Current</em>
+      </div>
+      <div class="intent spot">
+        <span><b>Stage 2 &mdash; AI sales workflow platform.</b> CRM integration, scheduling, automated follow-up, deeper analytics.</span>
+        <em class="mini__tag">Months 7&ndash;18</em>
+      </div>
+      <div class="intent spot">
+        <span><b>Stage 3 &mdash; Voice AI.</b> The same qualification logic through a spoken interface rather than a typed one.</span>
+        <em class="mini__tag">In development</em>
+      </div>
+      <div class="intent spot">
+        <span><b>Stage 4 &mdash; AI sales workforce.</b> Specialised agents: qualification, appointments, follow-up, support, reactivation.</span>
+        <em class="mini__tag">Beyond year 2</em>
+      </div>
+      <div class="intent spot">
+        <span><b>Stage 5 &mdash; Enterprise sales infrastructure.</b> Multiple agents across sites, channels and internal workflows.</span>
+        <em class="mini__tag">Long term</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="shell">
+    <div class="sec__head reveal">
+      <span class="eyebrow eyebrow--muted">The first 24 months</span>
+      <h2 class="rt">What has to be true before any of the rest matters.</h2>
+    </div>
+
+    <div class="cards reveal" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:44px">
+      <article class="card spot">
+        <h3 style="margin-top:0">Months 1&ndash;3 &middot; Product validation</h3>
+        <p>
+          Finish MVP testing, harden the website integration, ship analytics, set initial pricing,
+          interview customers, onboard the first pilots. Measured on active pilots, conversations,
+          qualified leads and whether anyone comes back.
+        </p>
+      </article>
+      <article class="card spot">
+        <h3 style="margin-top:0">Months 4&ndash;6 &middot; Commercial MVP</h3>
+        <p>
+          Introduce paid subscriptions and usage billing, build a real onboarding and support
+          process, get the first integrations in. The point is one piece of evidence: that someone
+          will pay a recurring fee for this.
+        </p>
+      </article>
+      <article class="card spot">
+        <h3 style="margin-top:0">Months 7&ndash;12 &middot; Product-market validation</h3>
+        <p>
+          Grow the customer base, improve answer quality, add CRM integrations, start early voice
+          work, build case studies, measure customer ROI. Retention is prioritised over raw
+          acquisition, deliberately.
+        </p>
+      </article>
+      <article class="card spot">
+        <h3 style="margin-top:0">Months 13&ndash;18 &middot; Scale</h3>
+        <p>
+          First engineering and customer-success hires, wider integrations, stronger security,
+          advanced analytics, expanded voice. This is where the company stops being one person.
+        </p>
+      </article>
+      <article class="card spot">
+        <h3 style="margin-top:0">Months 19&ndash;24 &middot; Enterprise readiness</h3>
+        <p>
+          Enterprise plans, role-based access, audit logging, configurable retention, enterprise
+          onboarding and partner channels &mdash; built when enterprise customers actually require them,
+          not before.
+        </p>
+      </article>
+      <article class="card spot">
+        <h3 style="margin-top:0">Hiring, if it works</h3>
+        <p>
+          2&ndash;3 people in year one, 5&ndash;7 in year two, growing toward 25&ndash;35 by year
+          five &mdash; engineering, AI development, sales, customer success, operations. Planning targets,
+          drawn on Philadelphia's existing tech labour market rather than a market that would have to
+          be created.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--soft">
+  <div class="shell">
+    <div class="split split--flip reveal">
+      <div class="panel spot" style="grid-template-columns:1fr" aria-hidden="true">
+        <div class="srcs">
+          <div class="mono srcs__head">Where the $50,000 went</div>
+          <div class="src">Product development &amp; testing <span>$14,000</span></div>
+          <div class="src">Sales &amp; marketing, phase 1 <span>$11,000</span></div>
+          <div class="src">AI infrastructure &amp; software <span>$9,000</span></div>
+          <div class="src">Working capital reserve <span>$7,000</span></div>
+          <div class="src">Office, equipment &amp; admin <span>$5,000</span></div>
+          <div class="src">Legal, formation &amp; compliance <span>$4,000</span></div>
+        </div>
+      </div>
+
+      <div class="prose" style="margin:0">
+        <span class="eyebrow eyebrow--muted">Capital</span>
+        <h2 class="rt" style="margin-top:0">One investor, and he has to live with the outcome.</h2>
+        <p>
+          The company is funded entirely by its founder: $50,000 of personal money, committed, for
+          100% of the membership interest. No investors, no lenders, no grants. That is a real
+          constraint &mdash; it is why the first eighteen months concentrate on small and lower
+          mid-market customers, where sales cycles are short, rather than chasing enterprise deals
+          the company cannot yet service.
+        </p>
+        <p>
+          It is also why the software is built the way it is. There is no leased office, no
+          inventory and no specialised equipment; the product is a website component and cloud
+          infrastructure. The allocation on the left is the plan's own, and like everything else
+          here it is a planning figure that will be corrected by what actually happens.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tight">
+  <div class="shell">
+    <div class="hills-wrap reveal">
+      <canvas class="hills" aria-hidden="true"></canvas>
+      <div class="close">
+      <h2 class="rt">The fastest way to evaluate us is to argue with the agent.</h2>
+      <p>
+        Ask it something we would rather not answer. How it handles that tells you more about this
+        company than this page does.
+      </p>
+      <a class="btn btn--lg btn--glass" href="/demo">
+        Talk to the agent
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+      <p class="close__note">Or email {{ company.email }} and it reaches Nodirbek directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
