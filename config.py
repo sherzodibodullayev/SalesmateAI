@@ -18,25 +18,52 @@ STATIC_V = (
     or str(int(time.time()))
 )
 
+def env(name: str, default=None):
+    """An unset variable and a variable set to "" mean the same thing here.
+
+    They do not to os.getenv: a dashboard field left blank still *exists*, so
+    getenv returns "" rather than the default. That crashed a production boot
+    (`int("")` on REDIS_PORT) purely because the variable had been added and
+    left empty, which is exactly what happens when someone fills in a hosting
+    panel. Treat blank as absent everywhere instead.
+    """
+    value = os.getenv(name)
+    return default if value is None or not value.strip() else value.strip()
+
+
+def env_int(name: str, default: int) -> int:
+    """Same, and never let a malformed value take the whole site down — a
+    typo'd port is worth a log line and a default, not a 500 on every page."""
+    raw = env(name)
+    if raw is None:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        print(f"config: {name}={raw!r} is not a number; using {default}")
+        return default
+
+
 # OpenAI API configuration.
 # Deliberately not fatal: the assistant needs this key, the marketing pages do
 # not. Taking the whole site down over a missing chat credential is worse than
 # serving the site and failing the one endpoint that needs it — and the failure
 # is far easier to diagnose when /health can still answer.
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = env("OPENAI_API_KEY")
 HAS_OPENAI_KEY = bool(OPENAI_API_KEY)
 openai.api_key = OPENAI_API_KEY
 
-CHAT_MODEL = os.getenv("CHAT_MODEL", "gpt-4.1")
+CHAT_MODEL = env("CHAT_MODEL", "gpt-4.1")
 
 # Redis configuration. REDIS_URL wins when present — it is what hosted
 # providers hand you, and rediss:// carries the TLS setting and password
-# without four separate variables.
-REDIS_URL = os.getenv("REDIS_URL") or os.getenv("KV_URL")
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_DB = int(os.getenv("REDIS_DB", 0))
-REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
+# without four separate variables. KV_URL is what Vercel's Upstash
+# integration injects.
+REDIS_URL = env("REDIS_URL") or env("KV_URL")
+REDIS_HOST = env("REDIS_HOST", "localhost")
+REDIS_PORT = env_int("REDIS_PORT", 6379)
+REDIS_DB = env_int("REDIS_DB", 0)
+REDIS_PASSWORD = env("REDIS_PASSWORD")
 REDIS_PREFIX = "salesmate_ai:"
 REDIS_EXPIRATION = 60 * 60 * 24 * 7  # 7 days
 
@@ -64,8 +91,8 @@ COMPANY = {
     "entity_number": "0014963635",
     "entity_type": "Pennsylvania Domestic LLC",
     "filing_date": "October 30, 2025",
-    "email": os.getenv("CONTACT_EMAIL", "hello@salesmateai.com"),
-    "linkedin": os.getenv("CONTACT_LINKEDIN", "https://www.linkedin.com/company/tora-labs"),
+    "email": env("CONTACT_EMAIL", "hello@salesmateai.com"),
+    "linkedin": env("CONTACT_LINKEDIN", "https://www.linkedin.com/company/tora-labs"),
     "linkedin_label": "Tora Labs on LinkedIn",
     # Section 13.1 — illustrative pricing architecture. The plan is explicit
     # that these are planning assumptions to be validated in Months 1–6, and
