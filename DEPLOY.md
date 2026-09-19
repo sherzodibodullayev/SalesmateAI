@@ -3,8 +3,7 @@
 The repo is configured for Vercel: `vercel.json` sends `public/**` to the CDN
 and everything else to the Python function in `api/index.py`.
 
-**Read step 3 before you deploy.** On Vercel the agent does not work without
-Redis — not "works worse", does not work. Everything else here is routine.
+You can ship without Redis. Step 3 says exactly what you give up.
 
 ---
 
@@ -24,28 +23,17 @@ Treat it as public.
 
 ---
 
-## 1. Push to Git
+## 1. The repo
 
-The project is not a repository yet:
+Already done — <https://github.com/sherzodibodullayev/SalesmateAI>, `main`.
 
-```bash
-cd "C:/Users/user/American_projects/Tora_Labs" && git init && git add -A && git commit -m "SalesmateAI site"
-```
-
-Check the secret did not go with it **before** you push:
+`.env`, the business-plan PDF, the chatbot zip and the virtualenv are all
+excluded, and the pushed tree was scanned for credential patterns before it
+went up. For future pushes, the same check:
 
 ```bash
-git ls-files | grep -E "^\.env$" && echo "STOP - .env is committed" || echo "clean"
+git ls-files | grep -E "^\.env$|\.pdf$|\.zip$" && echo "STOP" || echo "clean"
 ```
-
-Then create an empty repo on GitHub and push:
-
-```bash
-git remote add origin https://github.com/<you>/<repo>.git && git branch -M main && git push -u origin main
-```
-
-If `.env` did get committed, rotate the key again — rewriting history does not
-un-leak it.
 
 ---
 
@@ -54,8 +42,8 @@ un-leak it.
 <https://vercel.com/new> → import the repo → **Deploy**. Leave every build
 setting alone: `vercel.json` overrides them.
 
-The first deploy will succeed and the site will render. **The agent will not
-answer properly yet** — that is step 3.
+That is enough to get the site live. The agent needs `OPENAI_API_KEY` before
+it will answer — step 4.
 
 ### What actually gets uploaded
 
@@ -67,45 +55,57 @@ you add large files later, add them to `.vercelignore` too.
 
 ---
 
-## 3. Redis — required, not optional
+## 3. Redis — optional, and what skipping it costs
 
-Vercel runs the app as serverless functions. Every request can land on a
-different instance with its own memory. Without a shared store:
+Vercel runs the app as serverless functions: each request can land on a
+different instance with its own memory. Two things depend on shared state.
 
-- every message starts a **brand-new conversation** — the agent forgets the
-  previous line, so it cannot qualify anyone;
-- the per-IP rate limit never accumulates, so nothing throttles abuse of your
-  OpenAI budget.
+**Rate limiting — fine without it.** `utils/rate_limiting.py` falls back to a
+per-process counter, 40 requests per IP per hour. On serverless that cap is
+per warm instance rather than global, so it is a soft limit, not an exact one.
+It is still real protection, and your OpenAI spend cap (step 0) is the hard
+backstop either way.
 
-`utils/redis_utils.py` falls back to a process-local dict when Redis is
-missing. That is correct on a normal server and useless here.
+**Conversation memory — this is what you lose.** Without a shared store the
+agent's memory of a thread lives on whichever instance answered. In practice
+Vercel keeps routing a visitor to the same warm instance, so a conversation
+usually holds together. But it is not guaranteed: after an idle gap, or under
+any concurrency, the next message can land elsewhere and the agent will have
+forgotten everything said before it. It will not error — it will just answer
+as though the visitor had only ever said that one line.
 
-**Set it up:**
+So:
+
+| | Without Redis | With Redis |
+|---|---|---|
+| Marketing pages | perfect | perfect |
+| Agent answers | yes | yes |
+| Remembers the previous message | usually | always |
+| Rate limit | soft, per instance | exact |
+
+**If the site is there to exist rather than to sell** — a link on a business
+plan, something to show it is real — ship without it. The pages are the point
+and they are unaffected, and a visitor who sends one message gets a perfectly
+good answer.
+
+**Add it the moment someone is actually being demoed to.** An agent that
+forgets the prospect's company name halfway through is worse than no agent.
+
+### Adding it later takes about two minutes
 
 1. Vercel project → **Storage** → **Create Database** → **Upstash Redis** →
    free plan.
-2. Connect it to the project.
+2. Connect it to the project. Redeploy.
 
-That is all. The integration injects `KV_URL` automatically, and `config.py`
-already reads it:
+No code change. The integration injects `KV_URL`, which `config.py` already
+reads:
 
 ```python
 REDIS_URL = os.getenv("REDIS_URL") or os.getenv("KV_URL")
 ```
 
-If you use a Redis provider from outside Vercel instead, set `REDIS_URL`
-yourself to the `rediss://` URL it gives you.
-
-**Verify after the next deploy:**
-
-```bash
-curl -s https://<your-project>.vercel.app/health
-```
-
-`"redis"` must say `"available"`. If it says `"memory-fallback"`, the database
-is not connected and the agent will not hold a conversation.
-
----
+`/health` tells you which mode you are in — `"redis": "available"` or
+`"memory-fallback"`.
 
 ## 4. Environment variables
 
@@ -175,10 +175,12 @@ Should show `Allow: /` and a `Sitemap:` line — not `Disallow: /`.
 curl -s https://<your-domain>/health
 ```
 
-- [ ] `status: ok`, `openai_key: set`, **`redis: available`**
+- [ ] `status: ok`, `openai_key: set`
+- [ ] `redis` says `available`, or `memory-fallback` if you chose to skip it
 - [ ] `/demo` gets a real reply
-- [ ] Send two messages in a row — the second must show it **remembered the
-      first**. This is the real test that step 3 worked.
+- [ ] Send two messages in a row. If you added Redis the second must remember
+      the first; on memory-fallback it usually will, and an occasional lapse
+      is the known trade from step 3.
 - [ ] Ask `"Do you integrate with HubSpot? Is voice available?"` — it should
       refuse to promise either
 - [ ] Ask `"just get me a human"` — it should stop selling and take an email
@@ -195,7 +197,7 @@ curl -s https://<your-domain>/health
 | | Monthly |
 |---|---|
 | Vercel Hobby | $0 |
-| Upstash Redis free tier | $0 |
+| Upstash Redis free tier (optional) | $0 |
 | Domain | ~$1 |
 | OpenAI | usage-based — **set a cap** |
 
@@ -216,8 +218,8 @@ redacts credentials before printing.
 **Pages load, the agent 503s.** `OPENAI_API_KEY` is missing or invalid. Check
 `/health`.
 
-**The agent replies but forgets everything.** Redis is not connected. `/health`
-will say `memory-fallback`. Back to step 3.
+**The agent replies but forgets the previous message.** Expected on
+memory-fallback; see step 3. Add Upstash Redis to make it consistent.
 
 **A CSS or JS change does not show.** Static URLs are cache-busted with the
 commit SHA, so a real deploy always breaks the cache. If you are looking at a

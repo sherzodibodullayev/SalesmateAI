@@ -75,13 +75,13 @@ change a price or ship a feature, change it in **both** `config.py` and
 
 See **[DEPLOY.md](DEPLOY.md)** for the Vercel runbook.
 
-The one thing not to skip: **on Vercel, Redis is required.** Each request can
-hit a different instance, so without a shared store the agent forgets the
-previous message and cannot qualify anyone. Add Upstash Redis from the
-project's Storage tab — the integration sets `KV_URL`, which `config.py`
-already reads.
+Redis is optional there. Without it the pages are unaffected and the agent
+still answers; what you lose is a guarantee that it remembers the previous
+message, because each request can hit a different instance. Fine for a site
+that exists to be seen; add Upstash Redis from the Storage tab before anyone
+is actually demoed to.
 
-Then rotate the OpenAI key, attach the domain, and set `SITE_URL` +
+Rotate the OpenAI key first, then attach the domain and set `SITE_URL` +
 `ALLOW_INDEXING=true` together as the last step.
 
 ## Notes
