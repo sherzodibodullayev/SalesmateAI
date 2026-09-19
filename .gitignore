@@ -199,3 +199,6 @@ chatbot_extracted/
 pdf_text.txt
 *.zip
 .venv/
+
+.vercel
+.env*

@@ -8,7 +8,10 @@ services:
     name: salesmateai
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    # uvicorn is not in requirements.txt any more: it is dead weight inside a
+    # Vercel function and only a host like this one, which runs its own
+    # process, actually needs it.
+    buildCommand: pip install -r requirements.txt 'uvicorn[standard]>=0.27'
 
     # --workers 1 is not a typo. Without Redis, conversation history and the
     # API rate limit live in process memory, so a second worker would have its

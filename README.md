@@ -12,7 +12,7 @@ five-year business plan.
 
 ```bash
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install -r requirements.txt   # Windows
+.venv/Scripts/python.exe -m pip install -r requirements.txt -r requirements-dev.txt   # Windows
 cp .env.example .env                                          # then fill in OPENAI_API_KEY
 .venv/Scripts/python.exe -m uvicorn main:app --reload --port 8010
 ```
