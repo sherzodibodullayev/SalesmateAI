@@ -91,7 +91,11 @@ COMPANY = {
     "entity_number": "0014963635",
     "entity_type": "Pennsylvania Domestic LLC",
     "filing_date": "October 30, 2025",
-    "email": env("CONTACT_EMAIL", "hello@salesmateai.com"),
+    "email": env("CONTACT_EMAIL", "Toralabs@outlook.com"),
+    "phone": "(804) 719-1159",
+    "phone_href": "tel:+18047191159",
+    "facebook": "https://www.facebook.com/share/1C7jHY94cx/",
+    "instagram": "https://www.instagram.com/zenith.anvarov/",
     "linkedin": env("CONTACT_LINKEDIN", "https://www.linkedin.com/company/tora-labs"),
     "linkedin_label": "Tora Labs on LinkedIn",
     # Section 13.1 — illustrative pricing architecture. The plan is explicit
