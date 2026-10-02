@@ -26,8 +26,8 @@ idea per screen.
 
 | | |
 |---|---|
-| **Live** | https://salesmateai-three.vercel.app |
-| (alias) | https://salesmateai-sherzod2.vercel.app |
+| **Live** | https://hiulix.com (and `www`) |
+| (host copies) | https://salesmateai-three.vercel.app, https://salesmateai-sherzod2.vercel.app |
 | **Repo** | https://github.com/sherzodibodullayev/SalesmateAI (public, `main`) |
 | **Vercel** | scope `sherzod2`, project `salesmateai` |
 | **Stack** | FastAPI + Jinja2 + vanilla JS. No build step, no framework, no npm. |
@@ -216,10 +216,24 @@ malformed integer logs and falls back rather than taking the site down.
 
 ## 8. Deployment state
 
+**The domain is live.** `hiulix.com` was attached on 2 October 2026 by DNS
+records rather than by moving nameservers — `A @ 76.76.21.21` and
+`CNAME www cname.vercel-dns.com`, with the nameservers left at NameCheap. That
+matches how `hisobchiai.com` and `hyperlogisticsai.com` are attached, and it
+leaves room to add mail later. Verified: HTTPS 200 with a valid certificate,
+`http` → `https` 308, and `www` serving as well.
+
 **Env vars set in Vercel (Production):** `OPENAI_API_KEY`, `ENV=production`,
-`SESSION_SECRET`, `ALLOW_INDEXING=false`, `CHAT_MODEL=gpt-4.1`.
-The blank `REDIS_PORT` / `REDIS_DB` / `REDIS_HOST` / `REDIS_PASSWORD` were
-deleted.
+`SESSION_SECRET`, `CHAT_MODEL=gpt-4.1`, `SITE_URL=https://hiulix.com`,
+`ALLOW_INDEXING=true`, plus `CONTACT_EMAIL`, `CONTACT_LINKEDIN` and
+`ALLOWED_ORIGINS`. The blank `REDIS_PORT` / `REDIS_DB` / `REDIS_HOST` /
+`REDIS_PASSWORD` were deleted.
+
+`REDIS_URL` is still listed on Production and Preview, but `/health` reports
+`memory-fallback`, so it is either blank or pointing at something unreachable.
+Either is handled safely — `env()` treats blank as unset and `get_redis_client`
+falls back — but it is a leftover worth deleting or filling deliberately rather
+than leaving ambiguous.
 
 **Redis: deliberately not used.** The founder's call — the site exists to be
 seen rather than to sell. Without it the pages are unaffected and the agent
@@ -229,10 +243,16 @@ did remember ("12 people, Chicago"), because Vercel keeps routing a visitor to
 the same warm instance. Adding Upstash Redis from the Storage tab is ~2 minutes
 and needs no code change — `config.py` already reads `KV_URL`.
 
-**`robots.txt` currently blocks everything** (`Disallow: /`). Intentional: it
-stops Google indexing the `.vercel.app` address and then competing with the
-real domain. Flip `ALLOW_INDEXING=true` and set `SITE_URL` **together**, as the
-last step after the domain is attached.
+**Indexing is now on, and the two switches were flipped together** — which is
+the only safe order. `SITE_URL` pins `canonical`, `og:url` and the sitemap to
+`https://hiulix.com` from *every* host, so the `www` copy and both `.vercel.app`
+copies point at the apex domain instead of competing with it for the same
+content. That is also why `www` is left serving rather than redirected: the
+canonical already resolves the duplicate. Verified after the deploy on all
+three hosts.
+
+Note that env vars only take effect on the **next deploy** — setting them is not
+enough, and the site will keep serving `Disallow: /` until you redeploy.
 
 **Deploy command:**
 ```bash
@@ -359,7 +379,11 @@ curl -s -o /dev/null -w "%{http_code}\n" https://rdap.verisign.com/com/v1/domain
 
 - [ ] Rotate the OpenAI key, set a spend cap (section 9)
 - [x] ~~Confirm who owns `hiulix.com`~~ — the founder's, confirmed 2 October 2026
-- [ ] Attach `hiulix.com`, then `SITE_URL` + `ALLOW_INDEXING=true` together
+- [x] ~~Attach `hiulix.com`, then `SITE_URL` + `ALLOW_INDEXING=true` together~~ — done
+      2 October 2026, all three verified live (section 8)
+- [ ] Delete or fill `REDIS_URL` — it is set but `/health` says memory-fallback
+- [ ] Submit `https://hiulix.com/sitemap.xml` to Google Search Console. Indexing
+      is open now, but nothing asks Google to come and look
 - [x] ~~Decide the vertical~~ — MSPs, as Hiulix, 2 October 2026 (section 11)
 - [ ] Vercel Hobby is non-commercial; Pro ($20/mo) once the site is selling
 - [ ] Add Upstash Redis before anyone is seriously demoed to
