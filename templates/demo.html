@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Talk to the agent — {{ company.name }}{% endblock %}
-{% block description %}This is SalesmateAI doing its own job on its own site. Bring a real question about your business and judge it by how the conversation goes.{% endblock %}
+{% block description %}This is Hiulix doing its own job on its own site. Bring a real question about your MSP and judge it by how the conversation goes.{% endblock %}
 
 {% block content %}
 <section class="console">
@@ -14,13 +14,13 @@
         <span class="eyebrow eyebrow--muted">The product, not a recording</span>
         <h1 class="rt">This is the agent. Try to catch it out.</h1>
         <p>
-          It is the same product a customer would put on their own site, pointed at Tora Labs'
-          information instead of theirs. Bring a real question about your business &mdash; that is the
-          only test worth running.
+          It is the same product an MSP would put on its own site, pointed at Tora Labs' information
+          instead of its own. Bring a real question about your MSP &mdash; that is the only test worth
+          running.
         </p>
         <p class="console__try">
           Try:
-          <span class="tw" data-phrases="&ldquo;We&rsquo;re a 12-person agency. Would this pay for itself?&rdquo;|&ldquo;Do you integrate with HubSpot?&rdquo;|&ldquo;How do I know it won&rsquo;t make something up?&rdquo;|&ldquo;Just get me a human.&rdquo;">&ldquo;We&rsquo;re a 12-person agency. Would this pay for itself?&rdquo;</span>
+          <span class="tw" data-phrases="&ldquo;We&rsquo;re a 12-person MSP. Would this pay for itself?&rdquo;|&ldquo;Do you integrate with ConnectWise?&rdquo;|&ldquo;Can we resell it to our clients?&rdquo;|&ldquo;Just get me a human.&rdquo;">&ldquo;We&rsquo;re a 12-person MSP. Would this pay for itself?&rdquo;</span>
         </p>
       </div>
 
@@ -28,16 +28,17 @@
         <li><b>Engage</b><span>It opens, discloses it is an AI, and asks what brought you in</span></li>
         <li><b>Intent</b><span>Classifies the message and takes the path that matches</span></li>
         <li><b>Answer</b><span>From approved material only &mdash; and it says when it has none</span></li>
-        <li><b>Qualify</b><span>Four questions, asked one at a time inside real answers</span></li>
+        <li><b>Qualify</b><span>Five questions, asked one at a time inside real answers</span></li>
         <li><b>Route</b><span>Captures the lead, and hands you a person when you want one</span></li>
       </ul>
 
       <div class="console__limit spot">
         <b>What it will not do</b>
-        It will not invent a customer, a case study, a certification or an integration that does not
-        exist, and it will not quote a price outside the published planning range. Ask for a human
-        and it stops selling and takes your email. If it does any of that wrong, that is worth
-        telling us &mdash; it is why the product is still in testing.
+        It will not invent an MSP reference, a case study, a certification or a PSA integration that
+        does not exist, it will not offer you a reseller arrangement that has not been built, and it
+        will not quote a price outside the published planning range. Ask for a human and it stops
+        selling and takes your email. If it does any of that wrong, that is worth telling us &mdash;
+        it is why the product is still in testing.
       </div>
     </aside>
 
@@ -47,42 +48,42 @@
           <img src="/static/images/mark.svg" alt="" width="32" height="32">
         </span>
         <div class="chatpanel__id">
-          <b>SalesmateAI</b>
+          <b>Hiulix</b>
           <span><i></i> AI agent &middot; replies instantly</span>
         </div>
       </div>
 
       <div class="thread" id="thread" role="log" aria-live="polite" aria-label="Conversation">
         <div class="msg msg--ai msg--intro">
-          <span class="msg__who" aria-hidden="true">S</span>
+          <span class="msg__who" aria-hidden="true">H</span>
           <div class="msg__body">
             <p>
-              Hi &mdash; I'm SalesmateAI. I'm an AI agent, not a person, and I'm doing on this site
-              exactly what I'd do on yours.
+              Hi &mdash; I'm Hiulix. I'm an AI agent, not a person, and I'm doing on this site exactly
+              what I'd do on your MSP's.
             </p>
-            <p>Tell me about your business and I'll show you rather than explain. Or pick one below.</p>
+            <p>Tell me about your MSP and I'll show you rather than explain. Or pick one below.</p>
           </div>
         </div>
 
         <div class="chips" id="chips">
-          <button class="chip" data-q="We're a 9-person software agency. Most of our enquiries come through the website contact form and I answer them myself, usually late at night. What would SalesmateAI actually change for us?">
+          <button class="chip" data-q="We're a 9-person MSP, about 900 seats under management. Most enquiries come through our website contact form and I answer them myself, usually late at night. What would Hiulix actually change for us?">
             <b>Would this work for us?</b>
-            <span>Describe your business and see what it asks back.</span>
+            <span>Describe your MSP and see what it asks back.</span>
           </button>
-          <button class="chip" data-q="What does SalesmateAI cost, and what exactly am I paying for on top of the monthly fee?">
+          <button class="chip" data-q="What does Hiulix cost, and what exactly am I paying for on top of the monthly fee? Is it per MSP or per client site?">
             <b>What does it cost?</b>
             <span>Subscription plus usage, and why it's split that way.</span>
           </button>
-          <button class="chip" data-q="How do you stop it making things up about our services? We're a consulting firm and a wrong answer to a client is a real problem for us.">
+          <button class="chip" data-q="How do you stop it making things up about our services? Our prospects ask about compliance and a wrong answer there is a real problem for us.">
             <b>How do you stop it inventing things?</b>
             <span>The knowledge layer, and what it does at the edge of it.</span>
           </button>
-          <button class="chip" data-q="How long does it take to get this live on our website, and what do we have to do on our side?">
-            <b>How fast can we go live?</b>
-            <span>What setup actually involves.</span>
+          <button class="chip" data-q="What are the five qualifying questions it asks our prospects, and can we change them?">
+            <b>What does it ask our prospects?</b>
+            <span>The five questions, and what is configurable.</span>
           </button>
-          <button class="chip" data-q="Do you integrate with HubSpot? And is the voice product available yet?">
-            <b>Do you integrate with our CRM?</b>
+          <button class="chip" data-q="Do you integrate with ConnectWise Manage or Autotask? And can we white-label this and resell it to our clients?">
+            <b>PSA, and reselling</b>
             <span>Watch it refuse to promise something that isn't built.</span>
           </button>
           <button class="chip" data-q="I'd rather just talk to a person about this.">
@@ -95,7 +96,7 @@
       <div class="composer">
         <form class="composer__form" id="composer">
           <label class="visually-hidden" for="input">Your message</label>
-          <textarea id="input" rows="1" placeholder="Tell it about your business…" required></textarea>
+          <textarea id="input" rows="1" placeholder="Tell it about your MSP…" required></textarea>
 
           <div class="composer__actions">
             <button type="button" class="icon-btn" id="mic" aria-label="Record a message">

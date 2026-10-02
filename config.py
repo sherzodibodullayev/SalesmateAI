@@ -64,7 +64,7 @@ REDIS_HOST = env("REDIS_HOST", "localhost")
 REDIS_PORT = env_int("REDIS_PORT", 6379)
 REDIS_DB = env_int("REDIS_DB", 0)
 REDIS_PASSWORD = env("REDIS_PASSWORD")
-REDIS_PREFIX = "salesmate_ai:"
+REDIS_PREFIX = "hiulix:"
 REDIS_EXPIRATION = 60 * 60 * 24 * 7  # 7 days
 
 # Audio uploads are transient: written, transcribed, deleted. On a read-only
@@ -76,17 +76,23 @@ AUDIO_DIR = os.getenv(
 
 # Company details injected into every template.
 #
-# CONTACT DETAILS ARE PLACEHOLDERS. Replace email/calendar below (and nothing
-# else) when the real ones exist — every page reads them from here, so one edit
-# updates the whole site.
+# TWO NAMES, ON PURPOSE. "Hiulix" is the product sold to managed service
+# providers — the name on this site. "SalesmateAI" is the platform underneath
+# it and the name used throughout the five-year business plan, so it stays:
+# renaming the plan's product would put the site and the plan in conflict, and
+# the plan is the document that has to hold up. Section 9 of the plan already
+# names IT service providers inside the Technology vertical, which is why this
+# is a narrowing rather than a pivot.
 #
-# Everything factual here comes from the five-year business plan: the entity
-# details from Section 2.1 and Appendix A, the pricing from Section 13.1.
+# Everything factual here comes from that plan: the entity details from
+# Section 2.1 and Appendix A, the pricing from Section 13.1.
 COMPANY = {
-    "name": "SalesmateAI",
+    "name": "Hiulix",
+    "platform": "SalesmateAI",
+    "vertical": "managed service providers",
     "legal_name": "Tora Labs LLC",
     "dba": "Tora Labs LLC, d/b/a SalesmateAI",
-    "tagline": "The AI sales agent that answers before your competitor does",
+    "tagline": "The AI sales agent for managed service providers",
     "city": "Philadelphia, Pennsylvania",
     "entity_number": "0014963635",
     "entity_type": "Pennsylvania Domestic LLC",

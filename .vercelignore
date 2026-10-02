@@ -27,6 +27,7 @@ app.log
 audio_uploads/
 
 # Tooling that the host has no use for
+test_*.py
 .claude/
 render.yaml
 .git/

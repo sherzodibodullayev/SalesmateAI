@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Company — {{ company.legal_name }}{% endblock %}
-{% block description %}Tora Labs LLC is a Pennsylvania company building SalesmateAI, founded and wholly funded by Nodirbek Anvarov. Pre-launch, no outside investors, no revenue yet — and honest about all three.{% endblock %}
+{% block description %}Tora Labs LLC is a Pennsylvania company building Hiulix, the AI sales agent for managed service providers. Founded and wholly funded by Nodirbek Anvarov. Pre-launch, no outside investors, no revenue yet — and honest about all three.{% endblock %}
 
 {% block content %}
 
@@ -11,9 +11,9 @@
     <span class="eyebrow eyebrow--muted">Company</span>
     <h1 class="rt">A small company that would rather be checkable than impressive.</h1>
     <p class="lede">
-      Tora Labs LLC is a Pennsylvania company building SalesmateAI. One founder, $50,000 of his own
-      money, no outside investors, no revenue yet. Everything on this page can be verified against
-      the public record or is labelled as a plan.
+      Tora Labs LLC is a Pennsylvania company building Hiulix, the AI sales agent for managed service
+      providers. One founder, $50,000 of his own money, no outside investors, no revenue yet.
+      Everything on this page can be verified against the public record or is labelled as a plan.
     </p>
   </div>
 </section>
@@ -22,13 +22,22 @@
   <div class="shell">
     <div class="facts reveal">
       <div><span class="mono">Legal name</span><b>{{ company.legal_name }}</b></div>
-      <div><span class="mono">Doing business as</span><b>{{ company.name }}</b></div>
+      <div><span class="mono">Platform</span><b>{{ company.platform }}</b></div>
       <div><span class="mono">Entity type</span><b>{{ company.entity_type }}</b></div>
       <div><span class="mono">Entity number</span><b>{{ company.entity_number }}</b></div>
       <div><span class="mono">Filed</span><b>{{ company.filing_date }}</b></div>
       <div><span class="mono">Registered office</span><b>{{ company.city }}</b></div>
       <div><span class="mono">Ownership</span><b>{{ founder.name }} &middot; 100%</b></div>
       <div><span class="mono">Outside capital</span><b>None</b></div>
+    </div>
+
+    <div class="notice reveal">
+      <b>Hiulix is the product; {{ company.platform }} is the platform underneath it.</b>
+      Tora Labs' five-year plan names technology and professional-services firms as the first
+      markets, with IT service providers inside that list. Hiulix is that line taken seriously: one
+      vertical, one sales conversation, built and sold to managed service providers before anyone
+      else. The platform, the entity and the plan are unchanged &mdash; what narrowed is who the
+      product is for.
     </div>
 
     <figure class="strip reveal">
@@ -57,8 +66,8 @@
         <p>
           Nodirbek is the founder, organizer and sole owner of Tora Labs LLC, and the company's
           principal executive &mdash; product, strategy, customer acquisition, partnerships and
-          operations. He identified the opportunity, built the SalesmateAI MVP himself, formed the
-          Pennsylvania entity, and capitalised the company with $50,000 of his own funds.
+          operations. He identified the opportunity, built the {{ company.platform }} MVP himself,
+          formed the Pennsylvania entity, and capitalised the company with $50,000 of his own funds.
         </p>
         <p>
           The business plan this site is built from is deliberately conservative about his
@@ -129,7 +138,7 @@
 
     <div class="intents reveal" style="margin-top:40px">
       <div class="intent spot">
-        <span><b>Stage 1 &mdash; AI website sales agent.</b> The core conversational sales product. <em>In pre-launch testing now.</em></span>
+        <span><b>Stage 1 &mdash; AI website sales agent.</b> The core conversational sales product, sold to MSPs as Hiulix. <em>In pre-launch testing now.</em></span>
         <em class="mini__tag mini__tag--amber">Current</em>
       </div>
       <div class="intent spot">

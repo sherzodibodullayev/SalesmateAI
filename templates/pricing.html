@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Pricing — {{ company.name }}{% endblock %}
-{% block description %}A monthly platform fee plus usage. SMB $199–$499, mid-market $750–$2,000, enterprise from $2,500 — published planning assumptions, to be validated with pilot customers.{% endblock %}
+{% block description %}A monthly platform fee plus usage, priced per MSP rather than per client site. Solo and small MSP $199–$499, established MSP $750–$2,000, MSP group from $2,500 — published planning assumptions, to be validated with pilot customers.{% endblock %}
 
 {% block content %}
 
@@ -35,14 +35,14 @@
     <div class="plans">
 
       <article class="plan spot reveal">
-        <h3>Small business</h3>
-        <p class="plan__who">2&ndash;15 people. Limited sales staff, no after-hours cover.</p>
+        <h3>Solo &amp; small MSP</h3>
+        <p class="plan__who">1&ndash;10 staff. You answer the website yourself, between tickets.</p>
         <div class="plan__fig">$<b class="num" data-m="199" data-y="2388">199</b><span>&ndash;$<b class="num" data-m="499" data-y="5988">499</b></span></div>
         <div class="plan__per" data-period>per month, plus usage</div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Website agent, live in days</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Knowledge layer from your own material</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Lead capture, qualification and email routing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Knowledge layer from your own service catalogue</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Lead capture, seat and agreement qualification, email routing</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Human handoff and AI disclosure, on by default</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Conversation and qualified-lead analytics</li>
         </ul>
@@ -51,28 +51,28 @@
 
       <article class="plan plan--pick spot reveal">
         <span class="plan__flag">Where we start</span>
-        <h3>Mid-market</h3>
-        <p class="plan__who">An established sales team, a CRM, and real lead volume.</p>
+        <h3>Established MSP</h3>
+        <p class="plan__who">A sales or account team, a PSA, and real inbound volume.</p>
         <div class="plan__fig">$<b class="num" data-m="750" data-y="9000">750</b><span>&ndash;$<b class="num" data-m="2000" data-y="24000">2,000</b></span></div>
         <div class="plan__per" data-period>per month, plus usage</div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Everything in Small business</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Routing rules by segment, territory or product line</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> CRM and business-system integrations, as they ship</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Meeting scheduling and automated follow-up</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Everything in Solo &amp; small MSP</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Routing rules by vertical, territory or engineer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> PSA, RMM and CRM integrations, as they ship</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Assessment scheduling and automated follow-up</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Escalation-rate and response-time reporting</li>
         </ul>
         <a class="btn" href="/demo">Talk to the agent</a>
       </article>
 
       <article class="plan spot reveal">
-        <h3>Enterprise</h3>
-        <p class="plan__who">Multiple product lines, procurement, and a security review.</p>
+        <h3>MSP group &amp; MSSP</h3>
+        <p class="plan__who">Multiple brands or locations, procurement, and a security review.</p>
         <div class="plan__fig">$<b class="num" data-m="2500" data-y="30000">2,500</b><span>+</span></div>
         <div class="plan__per" data-period>per month, plus usage</div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Everything in Mid-market</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Multiple agents across sites and product lines</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Everything in Established MSP</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Multiple agents across brands and sites</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Role-based access, audit logging, retention policy controls</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Administrative controls and usage governance</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Planned for months 19&ndash;24 &mdash; not available today</li>
@@ -84,7 +84,8 @@
 
     <div class="notice reveal">
       <b>These are planning assumptions, not quoted prices.</b>
-      Tora Labs has not yet sold SalesmateAI to anyone. The ranges above are the pricing architecture
+      Tora Labs has not yet sold Hiulix to anyone, and the ranges are per MSP rather than per client
+      site. They are the pricing architecture
       published in the company's five-year business plan, to be tested against real customers during
       the first six months of commercial operation and revised from what that shows. They are on this
       page because publishing the number you intend to charge, before you have charged it, is more
@@ -115,7 +116,7 @@
 
       <div class="panel" style="grid-template-columns:1fr" aria-hidden="true">
         <div class="answer" style="background:var(--card);border:1px solid var(--line-soft)">
-          <p style="color:var(--muted-2)" class="mono">Illustrative &mdash; small business tier</p>
+          <p style="color:var(--muted-2)" class="mono">Illustrative &mdash; solo &amp; small MSP tier</p>
           <div class="lead__row" style="margin-top:14px"><span>Platform fee</span><b>$349 / month</b></div>
           <div class="lead__row"><span>Conversations handled</span><b>312</b></div>
           <div class="lead__row"><span>Qualified leads routed</span><b>47</b></div>
@@ -123,7 +124,7 @@
           <div class="lead__row" style="border-bottom:0"><span>Voice minutes</span><b>&mdash; not yet available</b></div>
           <div class="answer__foot">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-            $349 is the plan's illustrative average SMB subscription, not a price list entry
+            $349 is the plan's illustrative average small-business subscription, not a price list entry
           </div>
         </div>
       </div>
@@ -156,6 +157,16 @@
         </p></div></div>
       </details>
       <details>
+        <summary>Is it priced per MSP or per client site?</summary>
+        <div class="faq__a"><div><p>
+          Per MSP. The published ranges cover the agent on your own website, qualifying your own
+          prospects. A per-client-site or white-label arrangement &mdash; Hiulix running on the sites
+          of the SMBs you already manage &mdash; is the first thing most MSPs ask about, and it is not
+          built and not priced. The agent will tell you that rather than improvise terms; if that is
+          the shape you need, it is a conversation with Nodirbek.
+        </p></div></div>
+      </details>
+      <details>
         <summary>What happens if usage spikes?</summary>
         <div class="faq__a"><div><p>
           Cost unpredictability is a real risk of usage-based pricing and the company treats it as
@@ -184,8 +195,8 @@
       <div class="close">
       <h2 class="rt">Ask the agent what it would cost you.</h2>
       <p>
-        Tell it your size and your inbound volume and it will talk through which tier fits &mdash; and
-        say so if none of them do yet.
+        Tell it your headcount and your inbound volume and it will talk through which tier fits
+        &mdash; and say so if none of them do yet.
       </p>
       <a class="btn btn--lg btn--glass" href="/demo">
         Talk to the agent

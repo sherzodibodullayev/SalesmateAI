@@ -30,8 +30,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="SalesmateAI API",
-    description="AI website sales agent by Tora Labs LLC — qualifies, books and routes inbound leads",
+    title="Hiulix API",
+    description="AI website sales agent for MSPs, by Tora Labs LLC — qualifies on seats, contract date and trigger, then routes",
     version="1.0.0",
 )
 
@@ -176,7 +176,7 @@ async def get_disclaimer(language: str = "en"):
         "en": {
             "title": "You are talking to an AI",
             "content": (
-                "This is SalesmateAI, an AI sales agent — not a person. It answers from Tora Labs' "
+                "This is Hiulix, an AI sales agent — not a person. It answers from Tora Labs' "
                 "own approved information, and hands you to Nodirbek, the founder, the moment you "
                 "ask for a human or it reaches the edge of what it knows. Pricing shown on this "
                 "site is a published planning assumption, not a quoted price."
@@ -185,7 +185,7 @@ async def get_disclaimer(language: str = "en"):
         "es": {
             "title": "Estas hablando con una IA",
             "content": (
-                "Este es SalesmateAI, un agente de ventas con IA, no una persona. Responde con la "
+                "Este es Hiulix, un agente de ventas con IA, no una persona. Responde con la "
                 "informacion aprobada de Tora Labs y te pasa con Nodirbek, el fundador, en cuanto "
                 "pides hablar con alguien. Los precios de este sitio son supuestos de planificacion "
                 "publicados, no un presupuesto."
@@ -194,7 +194,7 @@ async def get_disclaimer(language: str = "en"):
         "uz": {
             "title": "Siz sun'iy intellekt bilan suhbatlashyapsiz",
             "content": (
-                "Bu SalesmateAI — sun'iy intellektga asoslangan savdo agenti, inson emas. U Tora "
+                "Bu Hiulix — sun'iy intellektga asoslangan savdo agenti, inson emas. U Tora "
                 "Labs tasdiqlagan ma'lumot asosida javob beradi va siz odam bilan gaplashmoqchi "
                 "bo'lsangiz, asoschi Nodirbekka ulaydi. Saytdagi narxlar — e'lon qilingan "
                 "rejalashtirish taxminlari, rasmiy taklif emas."

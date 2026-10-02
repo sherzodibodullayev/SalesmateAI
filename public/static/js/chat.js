@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   SalesmateAI — the agent client.
+   Hiulix — the agent client.
 
    Drives both the floating panel (every page) and the /demo console: the two
    share element ids on purpose, so there is exactly one chat client on the
@@ -19,8 +19,8 @@
   var status = document.getElementById('status-text');
   var reset = document.getElementById('reset');
 
-  var KEY = 'salesmate.conversation';
-  var LANG_KEY = 'salesmate.language';
+  var KEY = 'hiulix.conversation';
+  var LANG_KEY = 'hiulix.language';
   var conversationId = localStorage.getItem(KEY) || null;
   // English by default — the market is the United States. The switch exists
   // because a visitor changing language mid-conversation is the shortest
@@ -204,7 +204,7 @@
     removeTyping();
     var msg = (err && err.detail) ||
       'Something went wrong on our side. Try again in a moment — or email ' +
-      'hello@salesmateai.com and a person will pick it up.';
+      'Toralabs@outlook.com and a person will pick it up.';
     addMessage('error', '<p>' + escapeHtml(msg) + '</p>');
     setStatus('Not sent — try again', 'alert');
   }

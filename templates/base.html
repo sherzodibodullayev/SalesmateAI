@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}{{ company.name }} — {{ company.tagline }}{% endblock %}</title>
-<meta name="description" content="{% block description %}SalesmateAI is an AI sales agent that lives on your website. It answers, qualifies, books and routes inbound leads — then hands a real person anything it cannot close.{% endblock %}">
+<meta name="description" content="{% block description %}Hiulix is an AI sales agent built for managed service providers. It answers the prospect who lands on your site at 2am, qualifies on seats, contract date and why now, and routes the lead to the person who should call.{% endblock %}">
 <meta name="theme-color" content="#CCE5F8">
 
 <link rel="canonical" href="{{ site_url }}{{ request.url.path }}">
@@ -43,7 +43,7 @@
     <div class="masthead__pill">
       <a class="wordmark" href="/" aria-label="{{ company.name }} home">
         <img class="wordmark__mark" src="/static/images/mark.svg" alt="" width="25" height="25">
-        <span class="wordmark__primary">Salesmate</span><span class="wordmark__secondary">AI</span>
+        <span class="wordmark__primary">Hiulix</span>
       </a>
 
       <nav class="nav" id="nav" aria-label="Main">
@@ -82,11 +82,11 @@
       </div>
       <div class="footer__col">
         <h2 class="mono footer__head">Who it's for</h2>
-        <a href="/#product">SaaS &amp; software</a>
-        <a href="/#product">IT &amp; cybersecurity</a>
-        <a href="/#product">Agencies</a>
-        <a href="/#product">Consulting &amp; advisory</a>
-        <a href="/#product">Accounting firms</a>
+        <a href="/#product">Managed service providers</a>
+        <a href="/#product">Co-managed IT</a>
+        <a href="/#product">MSSPs &amp; security-led MSPs</a>
+        <a href="/#product">MSPs with a compliance practice</a>
+        <a href="/#product">IT service firms</a>
       </div>
       <div class="footer__col">
         <h2 class="mono footer__head">Resources</h2>
@@ -115,8 +115,10 @@
     </div>
 
     <p class="footer__disclaimer">
-      SalesmateAI is in pre-launch testing. {{ company.legal_name }} has no paying customers and no
-      revenue as of this writing, and nothing on this site should be read as a claim otherwise.
+      Hiulix is the managed-service-provider product of {{ company.legal_name }}, built on its
+      {{ company.platform }} platform. It is in pre-launch testing: the company has no paying
+      customers and no revenue as of this writing, and nothing on this site should be read as a
+      claim otherwise.
       Prices shown are the company's published planning assumptions, to be validated with pilot
       customers — not quoted prices. Market figures are attributed to the analyst firms that
       published them; estimates for this category vary substantially by methodology, which is why a
@@ -138,7 +140,7 @@
 <!-- Floating agent. The panel carries the same element ids the /demo page uses,
      so chat.js drives both without a second client. -->
 <button class="chatfab" id="chatfab" type="button" aria-expanded="false" aria-controls="chatpanel"
-        aria-label="Open the SalesmateAI agent">
+        aria-label="Open the Hiulix agent">
   <span class="chatfab__ping" aria-hidden="true"></span>
   <svg class="chatfab__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9"
        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -152,14 +154,14 @@
   </svg>
 </button>
 
-<div class="chatpanel" id="chatpanel" role="dialog" aria-modal="false" aria-label="SalesmateAI agent" hidden>
+<div class="chatpanel" id="chatpanel" role="dialog" aria-modal="false" aria-label="Hiulix agent" hidden>
 
   <div class="chatpanel__head">
     <span class="chatpanel__avatar" aria-hidden="true">
       <img src="/static/images/mark.svg" alt="" width="30" height="30">
     </span>
     <div class="chatpanel__id">
-      <b>SalesmateAI</b>
+      <b>Hiulix</b>
       <span><i></i> AI agent &middot; replies instantly</span>
     </div>
     <button class="chatpanel__x" id="chatclose" type="button" aria-label="Close the agent">
@@ -172,34 +174,34 @@
   <div class="chatpanel__body">
     <div class="thread" id="thread" role="log" aria-live="polite" aria-label="Conversation">
       <div class="msg msg--ai msg--intro">
-        <span class="msg__who" aria-hidden="true">S</span>
+        <span class="msg__who" aria-hidden="true">H</span>
         <div class="msg__body">
           <p>
-            Hi — I'm SalesmateAI, the agent Tora Labs sells. This is me doing the job on our own
+            Hi — I'm Hiulix, the agent Tora Labs sells to MSPs. This is me doing the job on our own
             site, so you can judge it by how this goes rather than by a deck.
           </p>
-          <p>What brings you here?</p>
+          <p>Tell me about your MSP — or ask me anything.</p>
         </div>
       </div>
 
       <!-- Inside the thread, not below it: one scrolling column means the
            starter cards can never squeeze the conversation into a sliver. -->
       <div class="chips chips--panel" id="chips">
-        <button class="chip" data-q="We're a 9-person software agency. Most of our enquiries come through the website contact form and I answer them myself, usually late. What would SalesmateAI actually change?">
+        <button class="chip" data-q="We're a 14-person MSP in South Jersey, about 1,400 seats under management. Enquiries come through our contact form and I answer them myself, usually after hours. What would Hiulix actually change?">
           <b>Would this work for us?</b>
-          <span>Tell it about your business and see.</span>
+          <span>Tell it about your MSP and see.</span>
         </button>
-        <button class="chip" data-q="What does SalesmateAI cost, and what am I paying for on top of the monthly fee?">
+        <button class="chip" data-q="What does Hiulix cost, and what am I paying for on top of the monthly fee? Is it priced per client site?">
           <b>What does it cost?</b>
           <span>Subscription plus usage, explained.</span>
         </button>
-        <button class="chip" data-q="How do you stop it from making things up about our services? We're a consulting firm and a wrong answer to a client is a real problem.">
+        <button class="chip" data-q="How do you stop it quoting a per-seat price or promising coverage we don't offer? Our prospects ask technical questions.">
           <b>How do you stop it inventing things?</b>
           <span>The knowledge layer and its limits.</span>
         </button>
-        <button class="chip" data-q="How long does it take to get this live on our site, and what do we have to do?">
-          <b>How fast can we go live?</b>
-          <span>What setup actually involves.</span>
+        <button class="chip" data-q="Do you integrate with ConnectWise Manage? And can we resell this to our own clients?">
+          <b>PSA, and reselling</b>
+          <span>Watch it refuse to promise either.</span>
         </button>
       </div>
     </div>
@@ -208,7 +210,7 @@
   <div class="composer">
     <form class="composer__form" id="composer">
       <label class="visually-hidden" for="input">Your message</label>
-      <textarea id="input" rows="1" placeholder="Ask about your own site…" required></textarea>
+      <textarea id="input" rows="1" placeholder="Ask about your own MSP…" required></textarea>
 
       <div class="composer__actions">
         <button type="button" class="icon-btn" id="mic" aria-label="Record a message">

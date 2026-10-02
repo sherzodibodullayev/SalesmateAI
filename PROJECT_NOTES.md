@@ -1,4 +1,4 @@
-# Project notes — SalesmateAI / Tora Labs LLC
+# Project notes — Hiulix / Tora Labs LLC
 
 Working state as of **2 October 2026**. Written as a cold-start document: if you
 are picking this up with no memory of the conversation, everything you need is
@@ -8,9 +8,15 @@ here.
 
 ## 1. What this is
 
-Marketing site **and** a live AI sales agent for SalesmateAI, the product of
-Tora Labs LLC (Philadelphia, PA). The agent on the site is the product doing
-its own job — it is the demo.
+Marketing site **and** a live AI sales agent for **Hiulix**, the managed
+service provider product of Tora Labs LLC (Philadelphia, PA). The agent on the
+site is the product doing its own job — it is the demo.
+
+**Two names, deliberately.** Hiulix is the product sold to MSPs and the name on
+this site. **SalesmateAI is the platform underneath it** and the name used
+throughout the business plan, so it stays — renaming the plan's product would
+put the site and the plan in conflict, and the plan is the document that has to
+hold up. Section 11 has the reasoning; `config.py` has both names.
 
 Built from the founder's five-year business plan
 (`Tora_Labs_Business_Plan — копия.pdf`, 52 pages, gitignored). Visual design
@@ -68,6 +74,7 @@ public/static/css/chat.css    the agent panel + /demo console
 public/static/js/site.js      masthead, nav, reveal, market chart, chat panel
 public/static/js/components.js     the ported components' behaviour
 public/static/js/chat.js      the ONE chat client (drives panel and /demo both)
+test_prompt.py                prompt checks — run it after touching BASE_PROMPT
 vercel.json / .vercelignore   Vercel config
 render.yaml                   alternative host, unused
 DEPLOY.md                     the Vercel runbook
@@ -89,7 +96,17 @@ DEPLOY.md                     the Vercel runbook
 
 **If you change a price or ship a feature, change it in BOTH `config.py` and
 `BASE_PROMPT`** — otherwise the page and the agent contradict each other in
-front of a customer.
+front of a customer. `test_prompt.py` now enforces that: it fails if a
+`price_*` in `COMPANY` is absent from the rendered prompt.
+
+```bash
+cd "C:/Users/user/American_projects/Tora_Labs" && .venv/Scripts/python.exe test_prompt.py
+```
+
+It also catches a failure the source hides: `BASE_PROMPT` is one long string
+held together by backslash continuations, and the space has to come *before*
+the backslash. Without it two words fuse in the text the model actually reads
+while the file still looks right. That happened once during the Hiulix rewrite.
 
 ---
 
@@ -256,58 +273,96 @@ Now real, in `config.py` → `COMPANY`:
 email `Toralabs@outlook.com`, phone `(804) 719-1159`, Facebook, Instagram,
 LinkedIn. No longer the `hello@salesmateai.com` placeholder.
 
+That commit missed one: `chat.js` had the old placeholder hardcoded in its
+network-failure message, because it is a static file and does not read
+`COMPANY`. Fixed during the Hiulix rewrite. It is the only contact detail
+outside `config.py`, so it is the one that will go stale again.
+
 ---
 
-## 11. Open decision — narrowing to one vertical
+## 11. The vertical — decided, and shipped
 
-The founder was told the site reads too general and should target one specific
-niche, "like HVAC" — i.e. that level of narrowness. A rename to **Hiulix** is
-proposed.
+**Chosen: managed service providers. Brand: Hiulix.** Done on 2 October 2026;
+this section now records what was decided and what it changed rather than
+proposing it.
 
-**Constraint that shapes the answer:** the business plan's Section 9 names the
-verticals as **Technology** (SaaS, software, *IT service providers*,
-cybersecurity, technology consultancies, digital platforms) and **Professional
-Services** (consulting, marketing agencies, accounting, business advisory). If
-that plan is being used for immigration or investment, the site must not
-contradict it. HVAC is neither — it was raised as an example of *narrowness*,
-not as the actual target.
+**Why MSPs, not HVAC.** HVAC was raised as an example of *narrowness*, not as a
+target. The business plan's Section 9 names **Technology** (SaaS, software, *IT
+service providers*, cybersecurity, technology consultancies, digital platforms)
+and **Professional Services**. If that plan is being used for immigration or
+investment, the site must not contradict it. MSPs are already a line in Section
+9 and are HVAC-shaped anyway: an emergency story, $3–10k/mo contract value,
+dense around Philadelphia, and a first sales conversation that is genuinely
+standardised. Narrower still: *MSPs serving 20–250 seat SMBs*.
 
-**Recommendation: IT service providers / MSPs.** It is a single line already in
-Section 9, and it is HVAC-shaped: an emergency story (server down Friday night,
-ransomware), $3–10k/mo contract value, ~40k US businesses, dense around
-Philadelphia, and a first sales conversation that is genuinely standardised:
+**The five questions** — now the spine of the whole site and of the product's
+qualification logic:
 
 1. How many users / endpoints?
 2. Internal IT person, or none?
-3. Current provider, and when does the contract end?
+3. Current provider, and when does the agreement end?
 4. Compliance driver? (SOC 2, HIPAA, CMMC, cyber insurance)
-5. **Why now?** — breach, outage, provider failing, growth
+5. **Why now?** — breach, outage, provider failing, growth, audit
 
-That fifth question is the one no web form asks and the one that determines
-lead quality. Narrower still: *MSPs serving 20–250 seat SMBs*.
+The fifth is the one no web form asks and the one that decides lead quality.
 
-One advantage HVAC does not have: **MSPs resell.** One happy MSP has 40 SMB
-clients who each need a website agent — distribution a one-founder company
-cannot buy.
+**Two conversations, and they are easy to confuse.** On *this* site the visitor
+is an MSP owner being sold Hiulix, so the live agent qualifies MSPs: headcount
+and seats under management, the MSP's own inbound volume, who answers after
+hours, timeline. On a *customer's* site Hiulix talks to that MSP's prospect, and
+that is where the five questions get asked. The hero frame illustrates the
+second; the chat panel and `/demo` run the first. `BASE_PROMPT` says this
+explicitly, because a model given both roles will start interviewing the MSP
+owner as if he were the prospect.
 
-**If this is chosen, structure it as `Hiulix — a Tora Labs product`**, with
-SalesmateAI remaining the platform. That keeps the plan intact and reads as
-focus rather than a pivot.
+**What changed:** content only, as predicted. Name and mark, headline, hero
+conversation and lead-record fields (Company/Inbound/Handled-by → *Seats,
+Internal IT, Agreement ends, Why now*), `BASE_PROMPT`, FAQ (two new entries:
+"Why only MSPs?" and "Can we resell it to our own clients?"), intent examples,
+pricing plan names and copy, footer, legal pages. Design, components, backend
+and deploy untouched. Plan tiers keep their exact figures — only the names
+changed: Small business → **Solo & small MSP**, Mid-market → **Established
+MSP**, Enterprise → **MSP group & MSSP**.
 
-**What would change:** content only — name and mark, headline, the hero
-conversation, lead-record fields (System/Seats → *Seats, contract end,
-trigger*), the agent's qualifying questions in `BASE_PROMPT`, FAQ, intent
-examples, pricing copy, footer. Design, components, backend and deploy are
-untouched. Roughly 2–3 hours.
+**Honest limits held, and verified live against the model:**
 
-Also worth doing before committing to the name: check `hiulix.com` is available.
+- ConnectWise / Autotask / HaloPSA — refused as not live.
+- White-label and reselling — refused as not built, not priced, *and not on the
+  published roadmap*. The first draft of the prompt let the model soften this to
+  "it's on the roadmap"; the wording now forbids that phrase by name. This is
+  the one claim an MSP audience will push hardest on, because one MSP reaching
+  40 SMBs is distribution a one-founder company cannot buy. It is still worth
+  building — it just is not built.
+- A non-MSP visitor is told plainly the product is not for them.
+- Pricing is stated as **per MSP, not per client site**, in `config.py`, on
+  `/pricing` and in the prompt.
 
----
+Two places were deliberately *not* made to sound MSP-specific: the market
+section still shows the five analyst estimates for conversational AI with their
+attributions, because inventing an "~40,000 US MSPs" figure would break the
+claims discipline in section 5 for no gain; and the privacy pillars are generic
+because they are accurate.
+
+**The name: `hiulix.com` is the founder's**, registered 2026-09-26 at NameCheap
+and confirmed by him on 2 October. Checked by RDAP below rather than taken on
+trust, because the registration predates the decision to use the name and an
+unexplained registration would have been a reason to stop. Nothing in the code
+depends on the domain yet: `SITE_URL` is still unset and `robots.txt` still
+blocks everything — flip those two together, as the last step after the domain
+is attached (section 8).
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" https://rdap.verisign.com/com/v1/domain/hiulix.com
+```
 
 ## 12. Other open items
 
 - [ ] Rotate the OpenAI key, set a spend cap (section 9)
-- [ ] Attach the real domain, then `SITE_URL` + `ALLOW_INDEXING=true` together
-- [ ] Decide the vertical (section 11)
+- [x] ~~Confirm who owns `hiulix.com`~~ — the founder's, confirmed 2 October 2026
+- [ ] Attach `hiulix.com`, then `SITE_URL` + `ALLOW_INDEXING=true` together
+- [x] ~~Decide the vertical~~ — MSPs, as Hiulix, 2 October 2026 (section 11)
 - [ ] Vercel Hobby is non-commercial; Pro ($20/mo) once the site is selling
 - [ ] Add Upstash Redis before anyone is seriously demoed to
+- [ ] The business plan PDF still describes the product only as SalesmateAI. If
+      the plan is ever revised, add Hiulix as the MSP go-to-market name rather
+      than replacing SalesmateAI in it
